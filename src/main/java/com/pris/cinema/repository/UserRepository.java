@@ -1,0 +1,9 @@
+package com.pris.cinema.repository;
+
+import com.pris.cinema.entities.User;
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Long> {
+
+    User findByUsername(String username);
+}
