@@ -2,7 +2,10 @@ package com.pris.cinema.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pris.cinema.security.SecurityConstants;
+import com.pris.cinema.security.SecurityUtils;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -10,8 +13,10 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User implements UserDetails {
@@ -68,7 +73,14 @@ public class User implements UserDetails {
     public void setPassword(String password)                { this.password = password;                 }
     public void setConfirmPassword(String confirmPassword)  { this.confirmPassword = confirmPassword;   }
 
-    @Override @JsonIgnore public Collection<? extends GrantedAuthority> getAuthorities()    { return null; }
+    @Override @JsonIgnore public Collection<? extends GrantedAuthority> getAuthorities()    {
+
+        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+        list.add(new SimpleGrantedAuthority(SecurityConstants.ROLE_PREFIX + role));
+
+        return list;
+    }
+
     @Override @JsonIgnore public boolean isAccountNonExpired()                              { return true; }
     @Override @JsonIgnore public boolean isAccountNonLocked()                               { return true; }
     @Override @JsonIgnore public boolean isCredentialsNonExpired()                          { return true; }
