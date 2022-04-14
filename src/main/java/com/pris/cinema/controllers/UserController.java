@@ -70,7 +70,7 @@ public class UserController {
 
         User registeredUser = userService.saveUser(user);
 
-        return new ResponseEntity<User>(registeredUser, HttpStatus.CREATED);
+        return new ResponseEntity<>(registeredUser.toJson(), HttpStatus.CREATED);
     }
 
     @GetMapping("/me")

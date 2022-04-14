@@ -15,7 +15,7 @@ public class UserService {
 
     public User saveUser(User user) {
 
-        if (userEntityRepository.findByUsername(user.getUsername()) != null)
+        if (userEntityRepository.findByUsername(user.getUsername()).isPresent())
             throw new UsernameAlreadyExistsException(String.format("User with email %s already exists", user.getUsername()));
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
