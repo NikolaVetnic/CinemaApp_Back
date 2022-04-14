@@ -16,17 +16,17 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name = "section")
+public class Section {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @NotBlank(message = "Please enter role")
-    protected String role;
+    protected String section;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-    protected List<User> users = new LinkedList<>();
+    @OneToMany(mappedBy = "section", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Seat> seats = new LinkedList<>();
 }

@@ -2,7 +2,6 @@ package com.pris.cinema.validators;
 
 import com.pris.cinema.entities.User;
 import org.springframework.stereotype.Component;
-
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

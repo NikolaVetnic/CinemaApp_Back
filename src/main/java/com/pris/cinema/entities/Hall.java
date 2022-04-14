@@ -16,17 +16,21 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name = "hall")
+public class Hall {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @NotBlank(message = "Please enter role")
-    protected String role;
+    @NotBlank(message = "Please enter hall name")
+    protected String name;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-    protected List<User> users = new LinkedList<>();
+    @OneToMany(mappedBy = "hall", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Seat> seats = new LinkedList<>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "hall", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Projection> projections = new LinkedList<>();
 }

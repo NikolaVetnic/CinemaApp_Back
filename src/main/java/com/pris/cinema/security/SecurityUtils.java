@@ -1,7 +1,7 @@
 package com.pris.cinema.security;
 
-import com.pris.cinema.entities.ERole;
 import com.pris.cinema.entities.User;
+import com.pris.cinema.entities.e.ERole;
 import com.pris.cinema.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

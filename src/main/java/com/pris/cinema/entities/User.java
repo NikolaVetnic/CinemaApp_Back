@@ -1,8 +1,12 @@
 package com.pris.cinema.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
+import com.pris.cinema.entities.e.ERole;
 import com.pris.cinema.security.SecurityConstants;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.json.JSONObject;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,16 +14,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+@NoArgsConstructor
+@Accessors(chain = true)
+@Getter
+@Setter
 @Entity
+@Table(name = "user")
 public class User implements UserDetails {
 
     @Id
@@ -36,9 +40,11 @@ public class User implements UserDetails {
     @NotBlank(message = "Please enter your last name")
     protected String lastName;
 
-    @Min(value = 1, message = "Role ID must be equal to or greater than {value}.")
-    @Max(value = 3, message = "Role ID must be equal to or lesser than {value}.")
-    protected Integer roleId;
+    @JsonBackReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "roleId")
+    private Role role;
 
     @NotBlank(message = "Password field is required")
     protected String password;
@@ -53,23 +59,15 @@ public class User implements UserDetails {
     @JsonFormat(pattern = "yyyy-mm-dd")
     protected Date updatedAt;
 
-    public User() { }
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Ticket> tickets = new LinkedList<>();
 
     @PrePersist protected void onCreate()   { this.createdAt = new Date(); }
     @PreUpdate protected void onUpdate()    { this.updatedAt = new Date(); }
 
-    public Long getId()                 { return id;                            }
-    public String getUsername()         { return username;                      }
-    public String getFirstName()        { return firstName;                     }
-    public String getLastName()         { return lastName;                      }
-    public Integer getRoleId()          { return roleId;                        }
-    public String getPassword()         { return password;                      }
-    public String getConfirmPassword()  { return confirmPassword;               }
-    public Date getCreatedAt()          { return createdAt;                     }
-    public Date getUpdatedAt()          { return updatedAt;                     }
-
     public ERole roleAsEnum() {
-        return ERole.values()[roleId - 1];
+        return ERole.values()[(int) (role.id - 1)];
     }
 
     public String toJson() {
@@ -90,13 +88,6 @@ public class User implements UserDetails {
 
         return obj.toString();
     }
-
-    public void setUsername(String username)                { this.username = username;                 }
-    public void setFirstName(String firstName)              { this.firstName = firstName;               }
-    public void setLastName(String lastName)                { this.lastName = lastName;                 }
-    public void setRoleId(Integer roleId)                   { this.roleId = roleId;                     }
-    public void setPassword(String password)                { this.password = password;                 }
-    public void setConfirmPassword(String confirmPassword)  { this.confirmPassword = confirmPassword;   }
 
     @Override @JsonIgnore public Collection<? extends GrantedAuthority> getAuthorities()    {
 
