@@ -10,8 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,8 +36,9 @@ public class User implements UserDetails {
     @NotBlank(message = "Please enter your last name")
     protected String lastName;
 
-    @NotNull(message = "Please enter your role")
-    protected ERole role;
+    @Min(value = 1, message = "Role ID must be equal to or greater than {value}.")
+    @Max(value = 3, message = "Role ID must be equal to or lesser than {value}.")
+    protected Integer roleId;
 
     @NotBlank(message = "Password field is required")
     protected String password;
@@ -56,15 +58,16 @@ public class User implements UserDetails {
     @PrePersist protected void onCreate()   { this.createdAt = new Date(); }
     @PreUpdate protected void onUpdate()    { this.updatedAt = new Date(); }
 
-    public Long getId()                 { return id;                }
-    public String getUsername()         { return username;          }
-    public String getFirstName()        { return firstName;         }
-    public String getLastName()         { return lastName;          }
-    public ERole getRole()              { return role;              }
-    public String getPassword()         { return password;          }
-    public String getConfirmPassword()  { return confirmPassword;   }
-    public Date getCreatedAt()          { return createdAt;         }
-    public Date getUpdatedAt()          { return updatedAt;         }
+    public Long getId()                 { return id;                            }
+    public String getUsername()         { return username;                      }
+    public String getFirstName()        { return firstName;                     }
+    public String getLastName()         { return lastName;                      }
+    public Integer getRoleId()          { return roleId;                        }
+    public ERole getRole()              { return ERole.values()[roleId - 1];    }
+    public String getPassword()         { return password;                      }
+    public String getConfirmPassword()  { return confirmPassword;               }
+    public Date getCreatedAt()          { return createdAt;                     }
+    public Date getUpdatedAt()          { return updatedAt;                     }
 
     public String toJson() {
 
@@ -88,14 +91,14 @@ public class User implements UserDetails {
     public void setUsername(String username)                { this.username = username;                 }
     public void setFirstName(String firstName)              { this.firstName = firstName;               }
     public void setLastName(String lastName)                { this.lastName = lastName;                 }
-    public void setRole(ERole role)                         { this.role = role;                         }
+    public void setRoleId(Integer roleId)                   { this.roleId = roleId;                     }
     public void setPassword(String password)                { this.password = password;                 }
     public void setConfirmPassword(String confirmPassword)  { this.confirmPassword = confirmPassword;   }
 
     @Override @JsonIgnore public Collection<? extends GrantedAuthority> getAuthorities()    {
 
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-        list.add(new SimpleGrantedAuthority(SecurityConstants.ROLE_PREFIX + role));
+        list.add(new SimpleGrantedAuthority(SecurityConstants.ROLE_PREFIX + getRole()));
 
         return list;
     }
