@@ -1,8 +1,10 @@
 package com.pris.cinema.controllers;
 
+import com.pris.cinema.entities.ERole;
 import com.pris.cinema.entities.User;
 import com.pris.cinema.payload.JwtLoginSuccessResponse;
 import com.pris.cinema.payload.LoginRequest;
+import com.pris.cinema.repository.UserRepository;
 import com.pris.cinema.security.SecurityUtils;
 import com.pris.cinema.services.MapValidationErrorService;
 import com.pris.cinema.services.UserService;
@@ -21,6 +23,7 @@ public class UserController {
 
     @Autowired private MapValidationErrorService mapValidationErrorService;
     @Autowired private SecurityUtils securityUtils;
+    @Autowired private UserRepository userRepository;
     @Autowired private UserService userService;
     @Autowired private UserValidator userValidator;
 
@@ -53,5 +56,14 @@ public class UserController {
         String out = principal != null ? principal.toJson() : "{\"msg\":\"Invalid token.\"}";
 
         return new ResponseEntity<>(out, HttpStatus.OK);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<?> getAll() {
+
+        if (securityUtils.getSelf().roleAsEnum() != ERole.ADMIN)
+            return new ResponseEntity<>("{\"msg\":\"Unauthorized.\"}", HttpStatus.UNAUTHORIZED);
+        else
+            return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
     }
 }

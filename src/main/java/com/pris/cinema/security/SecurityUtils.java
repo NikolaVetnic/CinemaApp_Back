@@ -29,7 +29,7 @@ public class SecurityUtils {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Optional<User> principal = userRepository.findByUsername(authentication.getName());
 
-        return principal.isPresent() ? principal.get().getRole() : null;
+        return principal.isPresent() ? principal.get().roleAsEnum() : null;
     }
 
     public User getSelf() {

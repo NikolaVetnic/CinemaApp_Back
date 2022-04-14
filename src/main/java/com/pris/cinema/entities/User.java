@@ -63,11 +63,14 @@ public class User implements UserDetails {
     public String getFirstName()        { return firstName;                     }
     public String getLastName()         { return lastName;                      }
     public Integer getRoleId()          { return roleId;                        }
-    public ERole getRole()              { return ERole.values()[roleId - 1];    }
     public String getPassword()         { return password;                      }
     public String getConfirmPassword()  { return confirmPassword;               }
     public Date getCreatedAt()          { return createdAt;                     }
     public Date getUpdatedAt()          { return updatedAt;                     }
+
+    public ERole roleAsEnum() {
+        return ERole.values()[roleId - 1];
+    }
 
     public String toJson() {
 
@@ -98,7 +101,7 @@ public class User implements UserDetails {
     @Override @JsonIgnore public Collection<? extends GrantedAuthority> getAuthorities()    {
 
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-        list.add(new SimpleGrantedAuthority(SecurityConstants.ROLE_PREFIX + getRole()));
+        list.add(new SimpleGrantedAuthority(SecurityConstants.ROLE_PREFIX + roleAsEnum()));
 
         return list;
     }
