@@ -21,10 +21,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepository.findByUsername(username);
-        if (user == null) new UsernameNotFoundException("User not found");
+        Optional<User> user = userRepository.findByUsername(username);
+        if (!user.isPresent()) new UsernameNotFoundException("User not found");
 
-        return user;
+        return user.get();
     }
 
     @Transactional

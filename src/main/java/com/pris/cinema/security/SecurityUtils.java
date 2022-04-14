@@ -8,6 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class SecurityUtils {
 
@@ -16,17 +18,25 @@ public class SecurityUtils {
     public boolean checkRole(ERole role) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User principal = userRepository.findByUsername(authentication.getName());
+        Optional<User> principal = userRepository.findByUsername(authentication.getName());
 
-        return principal != null && principal.getAuthorities().stream()
+        return principal.isPresent() && principal.get().getAuthorities().stream()
                 .anyMatch(a -> a.getAuthority().equals(SecurityConstants.ROLE_PREFIX + role));
     }
 
     public ERole getRole() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User principal = userRepository.findByUsername(authentication.getName());
+        Optional<User> principal = userRepository.findByUsername(authentication.getName());
 
-        return principal != null ? principal.getRole() : null;
+        return principal.isPresent() ? principal.get().getRole() : null;
+    }
+
+    public User getSelf() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Optional<User> principal = userRepository.findByUsername(authentication.getName());
+
+        return principal.isPresent() ? principal.get() : null;
     }
 }

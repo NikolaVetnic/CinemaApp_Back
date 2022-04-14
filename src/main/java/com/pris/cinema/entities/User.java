@@ -3,16 +3,16 @@ package com.pris.cinema.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pris.cinema.security.SecurityConstants;
-import com.pris.cinema.security.SecurityUtils;
+import org.json.JSONObject;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -23,33 +23,33 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @Email(message = "Username needs to be an email")
     @NotBlank(message = "Username field is required")
-    private String username;
+    protected String username;
 
     @NotBlank(message = "Please enter your first name")
-    private String firstName;
+    protected String firstName;
 
     @NotBlank(message = "Please enter your last name")
-    private String lastName;
+    protected String lastName;
 
     @NotNull(message = "Please enter your role")
-    private ERole role;
+    protected ERole role;
 
     @NotBlank(message = "Password field is required")
-    private String password;
+    protected String password;
 
     @Transient
-    private String confirmPassword;
+    protected String confirmPassword;
 
     @Column(updatable = false)
     @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date createdAt;
+    protected Date createdAt;
 
     @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date updatedAt;
+    protected Date updatedAt;
 
     public User() { }
 
@@ -65,6 +65,25 @@ public class User implements UserDetails {
     public String getConfirmPassword()  { return confirmPassword;   }
     public Date getCreatedAt()          { return createdAt;         }
     public Date getUpdatedAt()          { return updatedAt;         }
+
+    public String toJson() {
+
+        JSONObject obj = new JSONObject();
+
+        Field[] fields = this.getClass().getDeclaredFields();
+
+        try {
+            for (Field field : fields)
+                if (field.getName().contains("word"))
+                    continue;
+                else
+                    obj.put(field.getName(), field.get(this));
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return obj.toString();
+    }
 
     public void setUsername(String username)                { this.username = username;                 }
     public void setFirstName(String firstName)              { this.firstName = firstName;               }
