@@ -33,7 +33,7 @@ public class Projection {
     @NotNull(message = "Fee must be provided.")
     private Double fee;
 
-    @JsonBackReference
+    @JsonBackReference("projections")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "hall")

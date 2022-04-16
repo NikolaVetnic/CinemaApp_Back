@@ -24,19 +24,19 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @JsonBackReference
+    @JsonBackReference("section")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "section")
     protected Section section;
 
-    @JsonBackReference
+    @JsonBackReference("seats")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "hall")
     protected Hall hall;
 
-    @JsonManagedReference
+    @JsonManagedReference("seat-tickets")
     @OneToMany(mappedBy = "seat", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
     protected List<Ticket> tickets = new LinkedList<>();
 }

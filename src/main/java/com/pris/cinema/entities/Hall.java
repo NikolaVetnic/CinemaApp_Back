@@ -26,11 +26,11 @@ public class Hall {
     @NotBlank(message = "Please enter hall name")
     protected String name;
 
-    @JsonManagedReference
+    @JsonManagedReference("seats")
     @OneToMany(mappedBy = "hall", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
     protected List<Seat> seats = new LinkedList<>();
 
-    @JsonManagedReference
+    @JsonManagedReference("projections")
     @OneToMany(mappedBy = "hall", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
     protected List<Projection> projections = new LinkedList<>();
 }

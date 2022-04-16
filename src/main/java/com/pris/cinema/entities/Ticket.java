@@ -27,13 +27,13 @@ public class Ticket {
     @JoinColumn(name = "projection")
     protected Projection projection;
 
-    @JsonBackReference
+    @JsonBackReference("seat-tickets")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "seat")
     protected Seat seat;
 
-    @JsonBackReference
+    @JsonBackReference("tickets")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "user")
