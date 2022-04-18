@@ -2,6 +2,7 @@ package com.pris.cinema.controllers;
 
 import com.pris.cinema.entities.Role;
 import com.pris.cinema.entities.User;
+import com.pris.cinema.entities.dto.UserInfoDto;
 import com.pris.cinema.entities.e.ERole;
 import com.pris.cinema.payload.JwtLoginSuccessResponse;
 import com.pris.cinema.payload.LoginRequest;
@@ -57,7 +58,7 @@ public class UserController {
 
         User registeredUser = userService.saveUser(user);
 
-        return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
+        return new ResponseEntity<>(new UserInfoDto(registeredUser), HttpStatus.CREATED);
     }
 
     @GetMapping("/me")
@@ -66,7 +67,7 @@ public class UserController {
         User principal = securityUtils.getSelf();
 
         if (principal != null)
-            return new ResponseEntity<>(principal, HttpStatus.OK);
+            return new ResponseEntity<>(new UserInfoDto(principal), HttpStatus.OK);
         else
             return new ResponseEntity<>("{\"msg\":\"Invalid token.\"}", HttpStatus.UNAUTHORIZED);
     }
