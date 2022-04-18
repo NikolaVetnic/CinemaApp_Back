@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.ws.Response;
 import java.util.Optional;
 
 @RestController
@@ -57,16 +58,18 @@ public class UserController {
 
         User registeredUser = userService.saveUser(user);
 
-        return new ResponseEntity<>(registeredUser.toJson(), HttpStatus.CREATED);
+        return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 
     @GetMapping("/me")
     public ResponseEntity<?> getSelf() {
 
         User principal = securityUtils.getSelf();
-        String out = principal != null ? principal.toJson() : "{\"msg\":\"Invalid token.\"}";
 
-        return new ResponseEntity<>(out, HttpStatus.OK);
+        if (principal != null)
+            return new ResponseEntity<>(principal, HttpStatus.OK);
+        else
+            return new ResponseEntity<>("{\"msg\":\"Invalid token.\"}", HttpStatus.UNAUTHORIZED);
     }
 
     @GetMapping("/")

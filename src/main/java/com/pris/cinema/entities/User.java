@@ -70,25 +70,6 @@ public class User implements UserDetails {
         return ERole.values()[(int) (role.id - 1)];
     }
 
-    public String toJson() {
-
-        JSONObject obj = new JSONObject();
-
-        Field[] fields = this.getClass().getDeclaredFields();
-
-        try {
-            for (Field field : fields)
-                if (field.getName().contains("word"))
-                    continue;
-                else
-                    obj.put(field.getName(), field.get(this));
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return obj.toString();
-    }
-
     @Override @JsonIgnore public Collection<? extends GrantedAuthority> getAuthorities()    {
 
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
