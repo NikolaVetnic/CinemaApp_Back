@@ -2,6 +2,7 @@ package com.pris.cinema.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,6 +40,7 @@ public class Projection {
     @JoinColumn(name = "hall")
     protected Hall hall;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "projections")
     Set<Movie> movies = new TreeSet<>();
 }

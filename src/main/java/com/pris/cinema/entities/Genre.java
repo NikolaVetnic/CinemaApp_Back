@@ -1,5 +1,6 @@
 package com.pris.cinema.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,9 @@ import java.util.TreeSet;
 @Setter
 @Entity
 @Table(name = "genre")
-public class Genre {
+public class Genre implements Comparable<Genre> {
+
+    // ovo unosi samo admin, za pocetak cemo rucno uneti u bazu sta treba
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +28,12 @@ public class Genre {
     @NotBlank(message = "Please enter description")
     protected String genre;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "genres")
     Set<Movie> movies = new TreeSet<>();
+
+    @Override
+    public int compareTo(Genre other) {
+        return genre.compareTo(other.getGenre());
+    }
 }

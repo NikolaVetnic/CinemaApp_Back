@@ -18,7 +18,7 @@ import java.util.TreeSet;
 @Setter
 @Entity
 @Table(name = "movie")
-public class Movie {
+public class Movie implements Comparable<Movie> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,6 @@ public class Movie {
     @NotBlank(message = "Please enter description")
     protected String description;
 
-    @NotBlank(message = "Please enter runtime")
     @Min(value = 60, message = "Runtime must be greater than {value}.")
     @Max(value = 300, message = "Runtime must be lesser than than {value}.")
     protected Integer runtime;
@@ -51,4 +50,9 @@ public class Movie {
         joinColumns = @JoinColumn(name = "movieId"),
         inverseJoinColumns = @JoinColumn(name = "projectionId"))
     Set<Projection> projections = new TreeSet<>();
+
+    @Override
+    public int compareTo(Movie other) {
+        return title.compareTo(other.getTitle());
+    }
 }

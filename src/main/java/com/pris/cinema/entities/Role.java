@@ -19,6 +19,8 @@ import java.util.List;
 @Table(name = "role")
 public class Role {
 
+    // ovo unosi samo admin, za pocetak cemo rucno uneti u bazu sta treba
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
