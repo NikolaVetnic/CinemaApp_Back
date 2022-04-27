@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -70,6 +71,8 @@ public class MovieController {
     public ResponseEntity<?> getAllProjections() {
         return new ResponseEntity<>(projectionRepository.findAll(), HttpStatus.OK);
     }
+
+    // JOVANA: po uzoru na getAllProjections uraditi taskove 4798 i 4799
 
     @PostMapping("/projection")
     public ResponseEntity<?> registerProjection(@Valid @RequestBody ProjectionRegisterDto projectionRegisterDto, BindingResult result) {
