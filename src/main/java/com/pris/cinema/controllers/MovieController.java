@@ -10,6 +10,7 @@ import com.pris.cinema.repository.GenreRepository;
 import com.pris.cinema.repository.HallRepository;
 import com.pris.cinema.repository.MovieRepository;
 import com.pris.cinema.repository.ProjectionRepository;
+import com.pris.cinema.services.ProjectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Optional;
@@ -36,6 +38,9 @@ public class MovieController {
 
     @Autowired
     private ProjectionRepository projectionRepository;
+
+    @Autowired
+    private ProjectionService projectionService;
 
     @GetMapping("")
     public ResponseEntity<?> getAll() {
@@ -66,6 +71,20 @@ public class MovieController {
 
         return new ResponseEntity<>(persistedMovie, HttpStatus.OK);
     }
+
+    @GetMapping("/futureprojection")
+    public ResponseEntity<?> getAllFutureProjections(){
+
+        return new ResponseEntity<>(projectionRepository.findFutureProjections(LocalDate.now()), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/thisweekprojection")
+    public ResponseEntity<?> getThisWeekProjection(){
+
+        return  new ResponseEntity<>(projectionService.getProjectionsThisWeek(), HttpStatus.OK);
+    }
+
 
     @GetMapping("/projection")
     public ResponseEntity<?> getAllProjections() {
