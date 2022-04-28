@@ -1,0 +1,36 @@
+package com.pris.cinema.entities;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.LinkedList;
+import java.util.List;
+
+@NoArgsConstructor
+@Accessors(chain = true)
+@Getter
+@Setter
+@Entity
+@Table(name = "hall")
+public class Hall {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+
+    @NotBlank(message = "Please enter hall name")
+    protected String name;
+
+    @JsonManagedReference("seats")
+    @OneToMany(mappedBy = "hall", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Seat> seats = new LinkedList<>();
+
+    @JsonManagedReference("projections")
+    @OneToMany(mappedBy = "hall", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Projection> projections = new LinkedList<>();
+}
