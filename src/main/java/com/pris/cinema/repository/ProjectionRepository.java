@@ -17,4 +17,8 @@ public interface ProjectionRepository extends CrudRepository<Projection, Long> {
     @Query("FROM Projection AS p WHERE p.dateTime >= :date")
     List<Projection> findFutureProjections(@Param("date") LocalDate date);
 
+    @Query("FROM Projection AS p WHERE p.dateTime = :date")
+    List<Projection> findAllByDate(@Param("date") LocalDate date);
+
+
 }

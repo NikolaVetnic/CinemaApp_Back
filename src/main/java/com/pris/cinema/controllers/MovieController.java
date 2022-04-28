@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -83,8 +82,30 @@ public class MovieController {
     public ResponseEntity<?> getThisWeekProjection(){
 
         return  new ResponseEntity<>(projectionService.getProjectionsThisWeek(), HttpStatus.OK);
+
     }
 
+    @GetMapping("/thisweekdays")
+    public ResponseEntity<?> getAllDaysOfWeek(){
+
+        return new ResponseEntity<>(projectionService.thisWeekDates(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/projectionsmoviedate")
+    public ResponseEntity<?> getAllProjections(Movie movie, LocalDate date){
+
+        return new ResponseEntity<>(projectionService.allProjectionsByMovie(movie, date), HttpStatus.OK);
+
+    }
+
+
+    @GetMapping("/moviestoday")
+    public ResponseEntity<?> getAllMoviesToday(){
+
+        return new ResponseEntity<>(projectionService.allMoviesByDate(LocalDate.now()),HttpStatus.OK);
+
+    }
 
     @GetMapping("/projection")
     public ResponseEntity<?> getAllProjections() {

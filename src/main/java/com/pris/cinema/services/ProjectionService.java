@@ -1,5 +1,6 @@
 package com.pris.cinema.services;
 
+import com.pris.cinema.entities.Movie;
 import com.pris.cinema.entities.Projection;
 import com.pris.cinema.repository.ProjectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Service
 public class ProjectionService {
@@ -33,6 +36,44 @@ public class ProjectionService {
             sunday = sunday.plusDays(1);
         }
         return sunday;
+    }
+
+    public List<LocalDate> thisWeekDates(){
+
+        List<LocalDate> thisWeekDays = new LinkedList<>();
+        LocalDate thisWeekMonday = thisWeekMonday();
+        while(thisWeekMonday.getDayOfWeek() != DayOfWeek.SUNDAY){
+            thisWeekDays.add(thisWeekMonday);
+            thisWeekMonday = thisWeekMonday.plusDays(1);
+        }
+        return thisWeekDays;
+
+    }
+
+    public Set<Movie> allMoviesByDate(LocalDate date){
+        Set<Movie> movies = new TreeSet<>();
+        List<Projection> projectionstoday = projectionRepository.findAllByDate(date);
+        for(Projection p: projectionstoday){
+            for(Movie m: p.getMovies()){
+                movies.add(m);
+            }
+        }
+        return movies;
+    }
+
+    //sve projekcije datog datuma za dati film
+    public List<Projection> allProjectionsByMovie(Movie movie, LocalDate date){
+
+        List<Projection> movieProjections = new LinkedList<>();
+        List<Projection> allProjectionsDate = (List<Projection>) projectionRepository.findAllByDate(date);
+        for(Projection p: allProjectionsDate){
+            for(Movie m :p.getMovies()){
+                if(m.equals(movie)){
+                    movieProjections.add(p);
+                }
+            }
+        }
+        return movieProjections;
     }
 
     public List<Projection> getProjectionsThisWeek(){
