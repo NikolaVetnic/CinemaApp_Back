@@ -26,4 +26,6 @@ public interface ProjectionRepository extends CrudRepository<Projection, Long> {
             @Param("movie") Movie movie,
             @Param("dateTime0") LocalDateTime dateTime0,
             @Param("dateTime1") LocalDateTime dateTime1);
+
+    List<Projection> findAllByMovieTitle(String title);
 }

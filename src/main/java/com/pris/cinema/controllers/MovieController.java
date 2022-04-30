@@ -118,16 +118,17 @@ public class MovieController {
     }
 
   
-    @GetMapping("/projection")
-    public ResponseEntity<?> getProjectionById(Long id) {
+    @GetMapping("/projection/{id}")
+    public ResponseEntity<?> getProjectionById(@PathVariable Long id) {
         return new ResponseEntity<>(projectionRepository.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/projection")
-    public ResponseEntity<?> getProjectionsByMovieName(String name) {
 
-        return new ResponseEntity<>(projectionRepository.findAllByMovieName(name), HttpStatus.OK);
+    @GetMapping("/projections/movie/{title}")
+    public ResponseEntity<?> getProjectionsByMovieName(@PathVariable("title") String title) {
+        return new ResponseEntity<>(projectionRepository.findAllByMovieTitle(title), HttpStatus.OK);
     }
+
 
     @PostMapping("/projection")
     public ResponseEntity<?> registerProjection(@Valid @RequestBody ProjectionRegisterDto projectionRegisterDto, BindingResult result) {
