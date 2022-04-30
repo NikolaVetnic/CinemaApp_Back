@@ -117,6 +117,17 @@ public class MovieController {
         return new ResponseEntity<>(projectionRepository.findAll(), HttpStatus.OK);
     }
 
+  
+    @GetMapping("/projection")
+    public ResponseEntity<?> getProjectionById(Long id) {
+        return new ResponseEntity<>(projectionRepository.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/projection")
+    public ResponseEntity<?> getProjectionsByMovieName(String name) {
+
+        return new ResponseEntity<>(projectionRepository.findAllByMovieName(name), HttpStatus.OK);
+    }
 
     @PostMapping("/projection")
     public ResponseEntity<?> registerProjection(@Valid @RequestBody ProjectionRegisterDto projectionRegisterDto, BindingResult result) {
