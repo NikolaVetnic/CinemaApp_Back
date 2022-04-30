@@ -44,9 +44,9 @@ public class HallController {
 
         generateSeats(hallRegisterDto.getSeatsGroundFloor(), persistedHall,
                 sectionRepository.findBySection("GROUND_FLOOR").get());
-        generateSeats(hallRegisterDto.getSeatsGroundFloor(), persistedHall,
+        generateSeats(hallRegisterDto.getSeatsGalleryLeft(), persistedHall,
                 sectionRepository.findBySection("GALLERY_LEFT").get());
-        generateSeats(hallRegisterDto.getSeatsGroundFloor(), persistedHall,
+        generateSeats(hallRegisterDto.getSeatsGalleryRight(), persistedHall,
                 sectionRepository.findBySection("GALLERY_RIGHT").get());
 
         persistedHall = hallRepository.save(persistedHall);
