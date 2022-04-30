@@ -10,7 +10,7 @@ import javax.persistence.Column;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class ProjectionRegisterDto {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    protected LocalDate dateTime;
+    protected LocalDateTime dateTime;
 
     @Column(name = "fee", nullable = false)
     @NotNull(message = "Fee must be provided.")

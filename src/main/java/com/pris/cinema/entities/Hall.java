@@ -1,6 +1,9 @@
 package com.pris.cinema.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pris.cinema.entities.dto.HallDisplayDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,11 +29,15 @@ public class Hall {
     @NotBlank(message = "Please enter hall name")
     protected String name;
 
-    @JsonManagedReference("seats")
+    @JsonManagedReference
     @OneToMany(mappedBy = "hall", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
     protected List<Seat> seats = new LinkedList<>();
 
-    @JsonManagedReference("projections")
+    @JsonManagedReference
     @OneToMany(mappedBy = "hall", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
     protected List<Projection> projections = new LinkedList<>();
+
+    public HallDisplayDto getDisplayDto() {
+        return new HallDisplayDto(this);
+    }
 }

@@ -1,5 +1,9 @@
 package com.pris.cinema.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pris.cinema.entities.dto.MovieDisplayDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +13,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -44,15 +50,16 @@ public class Movie implements Comparable<Movie> {
         inverseJoinColumns = @JoinColumn(name = "genreId"))
     Set<Genre> genres = new TreeSet<>();
 
-    @ManyToMany
-    @JoinTable(
-        name = "MovieProjection",
-        joinColumns = @JoinColumn(name = "movieId"),
-        inverseJoinColumns = @JoinColumn(name = "projectionId"))
-    Set<Projection> projections = new TreeSet<>();
+    @JsonBackReference
+    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Projection> projections = new LinkedList<>();
 
     @Override
     public int compareTo(Movie other) {
         return title.compareTo(other.getTitle());
+    }
+
+    public MovieDisplayDto getDisplayDto() {
+        return new MovieDisplayDto(this);
     }
 }
