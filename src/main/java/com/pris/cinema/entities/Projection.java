@@ -1,9 +1,7 @@
 package com.pris.cinema.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
+import com.pris.cinema.entities.dto.ProjectionDisplayDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,9 +9,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.util.Set;
-import java.util.TreeSet;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -28,19 +24,25 @@ public class Projection {
     protected Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    protected LocalDate dateTime;
+    protected LocalDateTime dateTime;
 
     @Column(name = "fee", nullable = false)
     @NotNull(message = "Fee must be provided.")
     private Double fee;
 
-    @JsonBackReference("projections")
+    @JsonBackReference
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "hall")
     protected Hall hall;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "projections")
-    Set<Movie> movies = new TreeSet<>();
+    @JsonBackReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie")
+    protected Movie movie;
+
+    public ProjectionDisplayDto getDisplayDto() {
+        return new ProjectionDisplayDto(this);
+    }
 }

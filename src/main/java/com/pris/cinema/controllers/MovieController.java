@@ -12,6 +12,7 @@ import com.pris.cinema.repository.MovieRepository;
 import com.pris.cinema.repository.ProjectionRepository;
 import com.pris.cinema.services.ProjectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -19,12 +20,15 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/movies")
 public class MovieController {
+
 
     @Autowired
     private GenreRepository genreRepository;
@@ -41,10 +45,12 @@ public class MovieController {
     @Autowired
     private ProjectionService projectionService;
 
+
     @GetMapping("")
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(movieRepository.findAll(), HttpStatus.OK);
     }
+
 
     @PostMapping("")
     public ResponseEntity<?> registerMovie(@Valid @RequestBody MovieRegisterDto movieRegisterDto, BindingResult result) {
@@ -71,48 +77,46 @@ public class MovieController {
         return new ResponseEntity<>(persistedMovie, HttpStatus.OK);
     }
 
-    @GetMapping("/futureprojection")
-    public ResponseEntity<?> getAllFutureProjections(){
 
-        return new ResponseEntity<>(projectionRepository.findFutureProjections(LocalDate.now()), HttpStatus.OK);
-
-    }
-
-    @GetMapping("/thisweekprojection")
-    public ResponseEntity<?> getThisWeekProjection(){
-
-        return  new ResponseEntity<>(projectionService.getProjectionsThisWeek(), HttpStatus.OK);
-
-    }
-
-    @GetMapping("/thisweekdays")
-    public ResponseEntity<?> getAllDaysOfWeek(){
-
-        return new ResponseEntity<>(projectionService.thisWeekDates(), HttpStatus.OK);
-
-    }
-
-    @GetMapping("/projectionsmoviedate")
-    public ResponseEntity<?> getAllProjections(Movie movie, LocalDate date){
-
-        return new ResponseEntity<>(projectionService.allProjectionsByMovie(movie, date), HttpStatus.OK);
-
+    @GetMapping("/projections/future")
+    public ResponseEntity<?> getFutureProjections() {
+        return new ResponseEntity<>(projectionRepository
+                .findFutureProjections(LocalDateTime.now())
+                .stream()
+                .map(Projection::getDisplayDto)
+                .collect(Collectors.toList()), HttpStatus.OK);
     }
 
 
-    @GetMapping("/moviestoday")
-    public ResponseEntity<?> getAllMoviesToday(){
-
-        return new ResponseEntity<>(projectionService.allMoviesByDate(LocalDate.now()),HttpStatus.OK);
-
+    @GetMapping("/projections/repertoire")
+    public ResponseEntity<?> getRepertoire() {
+        return new ResponseEntity<>(projectionService.getProjectionsThisWeek(), HttpStatus.OK);
     }
 
-    @GetMapping("/projection")
+
+    @GetMapping("/projections/{movieId}/{date}")
+    public ResponseEntity<?> getProjectionsByMovieAndDate(@PathVariable Long movieId, @PathVariable LocalDate date) {
+        return new ResponseEntity<>(projectionService.getProjectionsByMovieAndDateTime(movieId, date), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/today")
+    public ResponseEntity<?> getAllMoviesToday() {
+        return new ResponseEntity<>(projectionService.getMoviesByDate(LocalDate.now()),HttpStatus.OK);
+    }
+
+
+    @GetMapping("/grouped/date")
+    public ResponseEntity<?> getMoviesGroupedByDate() {
+        return new ResponseEntity<>(projectionService.getMoviesGroupedByDate(),HttpStatus.OK);
+    }
+
+
+    @GetMapping("/projections/all")
     public ResponseEntity<?> getAllProjections() {
         return new ResponseEntity<>(projectionRepository.findAll(), HttpStatus.OK);
     }
 
-    // JOVANA: po uzoru na getAllProjections uraditi taskove 4798 i 4799
 
     @PostMapping("/projection")
     public ResponseEntity<?> registerProjection(@Valid @RequestBody ProjectionRegisterDto projectionRegisterDto, BindingResult result) {
@@ -133,7 +137,7 @@ public class MovieController {
         newProjection.setDateTime(projectionRegisterDto.getDateTime());
         newProjection.setFee(projectionRegisterDto.getFee());
         newProjection.setHall(hall);
-        newProjection.getMovies().add(movie);
+        newProjection.setMovie(movie);
 
         Projection persistedProjection = projectionRepository.save(newProjection);
 

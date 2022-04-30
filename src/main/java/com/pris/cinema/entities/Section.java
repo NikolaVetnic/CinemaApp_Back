@@ -26,7 +26,7 @@ public class Section {
     @NotBlank(message = "Please enter role")
     protected String section;
 
-    @JsonManagedReference("section")
+    @JsonManagedReference
     @OneToMany(mappedBy = "section", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
     protected List<Seat> seats = new LinkedList<>();
 }

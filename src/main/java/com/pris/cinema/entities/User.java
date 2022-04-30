@@ -40,7 +40,7 @@ public class User implements UserDetails {
     @NotBlank(message = "Please enter your last name")
     protected String lastName;
 
-    @JsonBackReference("role_id")
+    @JsonBackReference
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId")
@@ -59,7 +59,7 @@ public class User implements UserDetails {
     @JsonFormat(pattern = "yyyy-mm-dd")
     protected Date updatedAt;
 
-    @JsonManagedReference("tickets")
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
     protected List<Ticket> tickets = new LinkedList<>();
 
