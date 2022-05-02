@@ -43,7 +43,7 @@ public class UserController {
         return ResponseEntity.ok(new JwtLoginSuccessResponse(true, userService.getJwt(loginRequest)));
     }
 
-    @PostMapping("/register/{roleId}")
+    @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegisterDto userRegisterDto, @PathVariable Long roleId, BindingResult result) {
 
         User user = new User();
