@@ -10,12 +10,15 @@
 			"item": [
 				{
 					"name": "USER Create",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"admin@nikolapacekvetnic.rs\",\n    \"firstName\": \"Nikola\",\n    \"lastName\": \"Vetnic\",\n    \"password\": \"adMIN1234!\",\n    \"confirmPassword\": \"adMIN1234!\"\n}",
+							"raw": "{\n    \"username\": \"a@nikolapacekvetnic.rs\",\n    \"firstName\": \"Nikola\",\n    \"lastName\": \"Vetnic\",\n    \"roleId\": 1,\n    \"password\": \"adMIN1234!\",\n    \"confirmPassword\": \"adMIN1234!\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,7 +26,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/register/1",
+							"raw": "http://localhost:8080/api/users/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -32,8 +35,7 @@
 							"path": [
 								"api",
 								"users",
-								"register",
-								"1"
+								"register"
 							]
 						}
 					},
