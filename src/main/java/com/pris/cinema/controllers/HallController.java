@@ -1,11 +1,13 @@
 package com.pris.cinema.controllers;
 
 import com.pris.cinema.entities.Hall;
+import com.pris.cinema.entities.Projection;
 import com.pris.cinema.entities.Seat;
 import com.pris.cinema.entities.Section;
 import com.pris.cinema.entities.dto.HallDisplayDto;
 import com.pris.cinema.entities.dto.HallRegisterDto;
 import com.pris.cinema.repository.HallRepository;
+import com.pris.cinema.repository.ProjectionRepository;
 import com.pris.cinema.repository.SeatRepository;
 import com.pris.cinema.repository.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,6 +29,9 @@ public class HallController {
 
     @Autowired
     private HallRepository hallRepository;
+
+    @Autowired
+    private ProjectionRepository projectionRepository;
 
     @Autowired
     private SeatRepository seatRepository;
@@ -47,6 +53,30 @@ public class HallController {
                         .map(h -> h.getDisplayDto())
                         .collect(Collectors.toList()),
                 HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteHall(@PathVariable Long id) {
+
+        // razmisliti kako ovo da se uradi
+
+        Optional<Hall> hallOpt = hallRepository.findById(id);
+
+        if (!hallOpt.isPresent())
+            return new ResponseEntity<>("Hall not found.", HttpStatus.BAD_REQUEST);
+
+        Hall hall = hallOpt.get();
+
+        for (Seat s : hall.getSeats())
+            seatRepository.delete(s);
+
+        for (Projection p : hall.getProjections())
+            projectionRepository.delete(p);
+
+        hallRepository.delete(hall);
+
+        return new ResponseEntity<>("Hall with ID " + id + " not found.", HttpStatus.BAD_REQUEST);
     }
 
 

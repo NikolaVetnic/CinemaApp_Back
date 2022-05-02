@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Min;
@@ -18,8 +19,7 @@ import java.time.LocalDateTime;
 @Setter
 public class ProjectionRegisterDto {
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    protected LocalDateTime dateTime;
+    protected String dateTimeString;
 
     @Column(name = "fee", nullable = false)
     @NotNull(message = "Fee must be provided.")
