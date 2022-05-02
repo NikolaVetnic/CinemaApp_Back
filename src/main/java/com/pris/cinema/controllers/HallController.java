@@ -3,6 +3,7 @@ package com.pris.cinema.controllers;
 import com.pris.cinema.entities.Hall;
 import com.pris.cinema.entities.Seat;
 import com.pris.cinema.entities.Section;
+import com.pris.cinema.entities.dto.HallDisplayDto;
 import com.pris.cinema.entities.dto.HallRegisterDto;
 import com.pris.cinema.repository.HallRepository;
 import com.pris.cinema.repository.SeatRepository;
@@ -14,11 +15,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @RestController
 @RequestMapping("/api/halls")
 public class HallController {
+
 
     @Autowired
     private HallRepository hallRepository;
@@ -29,10 +33,22 @@ public class HallController {
     @Autowired
     private SectionRepository sectionRepository;
 
+
     @GetMapping("")
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(hallRepository.findAll(), HttpStatus.OK);
     }
+
+
+    @GetMapping("/display")
+    public ResponseEntity<?> getAllAsDisplayDtos() {
+        return new ResponseEntity<>(
+                ((List<Hall>) hallRepository.findAll()).stream()
+                        .map(h -> h.getDisplayDto())
+                        .collect(Collectors.toList()),
+                HttpStatus.OK);
+    }
+
 
     @PostMapping("")
     public ResponseEntity<?> registerHall(@Valid @RequestBody HallRegisterDto hallRegisterDto, BindingResult result) {

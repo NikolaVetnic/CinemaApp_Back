@@ -14,9 +14,18 @@ public class HallDisplayDto {
 
     protected Long id;
     protected String name;
+    protected Integer seatsGroundFloor;
+    protected Integer seatsGalleryLeft;
+    protected Integer seatsGalleryRight;
 
     public HallDisplayDto(Hall hall) {
         this.id = hall.getId();
         this.name = hall.getName();
+        this.seatsGroundFloor = Math.toIntExact(
+                hall.getSeats().stream().map(seat -> seat.getSection().getSection().equals("GROUND_FLOOR")).count());
+        this.seatsGalleryLeft = Math.toIntExact(
+                hall.getSeats().stream().map(seat -> seat.getSection().getSection().equals("GALLERY_LEFT")).count());
+        this.seatsGalleryRight = Math.toIntExact(
+                hall.getSeats().stream().map(seat -> seat.getSection().getSection().equals("GALLERY_RIGHT")).count());
     }
 }
