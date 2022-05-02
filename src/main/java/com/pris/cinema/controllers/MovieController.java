@@ -1,15 +1,9 @@
 package com.pris.cinema.controllers;
 
-import com.pris.cinema.entities.Genre;
-import com.pris.cinema.entities.Hall;
-import com.pris.cinema.entities.Movie;
-import com.pris.cinema.entities.Projection;
+import com.pris.cinema.entities.*;
 import com.pris.cinema.entities.dto.MovieRegisterDto;
 import com.pris.cinema.entities.dto.ProjectionRegisterDto;
-import com.pris.cinema.repository.GenreRepository;
-import com.pris.cinema.repository.HallRepository;
-import com.pris.cinema.repository.MovieRepository;
-import com.pris.cinema.repository.ProjectionRepository;
+import com.pris.cinema.repository.*;
 import com.pris.cinema.services.ProjectionService;
 import com.pris.cinema.utils.DateTimeParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +40,9 @@ public class MovieController {
 
     @Autowired
     private ProjectionService projectionService;
+
+    @Autowired
+    private TicketRepository ticketRepository;
 
 
     @GetMapping("")
@@ -165,5 +162,36 @@ public class MovieController {
         projectionRepository.save(persistedProjection);
 
         return new ResponseEntity<>(persistedProjection, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteMovieById(@PathVariable Long id) {
+
+        Optional<Movie> movieOpt = movieRepository.findById(id);
+
+        if (!movieOpt.isPresent())
+            return new ResponseEntity<>("Movie with ID " + id + " not found.", HttpStatus.BAD_REQUEST);
+
+        movieRepository.delete(movieOpt.get());
+
+        return new ResponseEntity<>("Movie with ID " + id + " deleted.", HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/projections/{id}")
+    public ResponseEntity<?> deleteProjectionById(@PathVariable Long id) {
+
+        Optional<Projection> projectionOpt = projectionRepository.findById(id);
+
+        if (!projectionOpt.isPresent())
+            return new ResponseEntity<>("Projection with ID " + id + " not found.", HttpStatus.BAD_REQUEST);
+
+        for (Ticket t : projectionOpt.get().getTickets())
+            ticketRepository.delete(t);
+
+        projectionRepository.delete(projectionOpt.get());
+
+        return new ResponseEntity<>("Projection with ID " + id + " deleted.", HttpStatus.OK);
     }
 }

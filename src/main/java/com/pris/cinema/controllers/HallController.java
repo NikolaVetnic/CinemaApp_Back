@@ -1,15 +1,9 @@
 package com.pris.cinema.controllers;
 
-import com.pris.cinema.entities.Hall;
-import com.pris.cinema.entities.Projection;
-import com.pris.cinema.entities.Seat;
-import com.pris.cinema.entities.Section;
+import com.pris.cinema.entities.*;
 import com.pris.cinema.entities.dto.HallDisplayDto;
 import com.pris.cinema.entities.dto.HallRegisterDto;
-import com.pris.cinema.repository.HallRepository;
-import com.pris.cinema.repository.ProjectionRepository;
-import com.pris.cinema.repository.SeatRepository;
-import com.pris.cinema.repository.SectionRepository;
+import com.pris.cinema.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +33,9 @@ public class HallController {
     @Autowired
     private SectionRepository sectionRepository;
 
+    @Autowired
+    private TicketRepository ticketRepository;
+
 
     @GetMapping("")
     public ResponseEntity<?> getAll() {
@@ -59,24 +56,27 @@ public class HallController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteHall(@PathVariable Long id) {
 
-        // razmisliti kako ovo da se uradi
-
         Optional<Hall> hallOpt = hallRepository.findById(id);
 
         if (!hallOpt.isPresent())
-            return new ResponseEntity<>("Hall not found.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Hall with ID " + id + " not found.", HttpStatus.BAD_REQUEST);
 
         Hall hall = hallOpt.get();
 
         for (Seat s : hall.getSeats())
             seatRepository.delete(s);
 
-        for (Projection p : hall.getProjections())
+        for (Projection p : hall.getProjections()) {
+
+            for (Ticket t : p.getTickets())
+                ticketRepository.delete(t);
+
             projectionRepository.delete(p);
+        }
 
         hallRepository.delete(hall);
 
-        return new ResponseEntity<>("Hall with ID " + id + " not found.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Hall with ID " + id + " deleted.", HttpStatus.BAD_REQUEST);
     }
 
 

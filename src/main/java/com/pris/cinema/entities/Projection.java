@@ -16,6 +16,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
+import java.util.List;
 
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -47,6 +49,10 @@ public class Projection {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "movie")
     protected Movie movie;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "projection", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Ticket> tickets = new LinkedList<>();
 
     public ProjectionDisplayDto getDisplayDto() {
         return new ProjectionDisplayDto(this);
