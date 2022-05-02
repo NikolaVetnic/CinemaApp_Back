@@ -1,0 +1,656 @@
+{
+	"info": {
+		"_postman_id": "e58c1d5b-d77d-4c4e-a4a1-7677619a9d33",
+		"name": "PRIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "USER Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin@nikolapacekvetnic.rs\",\n    \"firstName\": \"Nikola\",\n    \"lastName\": \"Vetnic\",\n    \"password\": \"adMIN1234!\",\n    \"confirmPassword\": \"adMIN1234!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"register",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER Get self",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MDMwMjgzNCwiaWF0IjoxNjUwMzAyNTM0LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.AedTJOF8t1leC5R65wi0DcahG_KjsQQR8NguUkRNarasPvjkSjwSaudy2VDaOUvVPp_MmQ2DOg1xFeD6Uqzrkw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/users/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin@nikolapacekvetnic.rs\",\n    \"password\": \"adMIN1234!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER Find all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MDE0NDUzMSwiaWF0IjoxNjUwMTQ0MjMxLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.EIsOgkoJXgwcHJzDbT2JEngfhXBsPZaHb1BZZq14hZNL1cW--QDmsNnxl6HCH_pT70Pl1-vY-QkfGZAQNwzJeQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ROLE",
+			"item": [
+				{
+					"name": "ROLE Get all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MDMwMjgzNCwiaWF0IjoxNjUwMzAyNTM0LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.AedTJOF8t1leC5R65wi0DcahG_KjsQQR8NguUkRNarasPvjkSjwSaudy2VDaOUvVPp_MmQ2DOg1xFeD6Uqzrkw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HALL",
+			"item": [
+				{
+					"name": "HALL Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Mala sala\",\n    \"seatsGroundFloor\": 2,\n    \"seatsGalleryLeft\": 1,\n    \"seatsGalleryRight\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/halls",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"halls"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HALL Get all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/halls",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"halls"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HALL Get all as DTOs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU3MDMwOCwiaWF0IjoxNjUxNDgzOTA4LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.Tv-dw4WX6Tcfdf3hV2q6CqGDoVdlgEPx5m_CcqhNlOB4lda2yrKObMkc3wqmQNVkZShqXkeWII3K4_mIp6k4CA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/halls/display",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"halls",
+								"display"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HALL Delete by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/halls/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"halls",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MOVIE",
+			"item": [
+				{
+					"name": "MOVIE Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MDI4MTc5NywiaWF0IjoxNjUwMjgxNDk3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.QI_gV__0nwgWipRXr0zUADu-5v7JleBNInluesDsYpUO7q1qZNDpA1Kw0N14OL4nh210s2YNg6yVqfkunBzA5w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Predator\",\n    \"image\": \"https://upload.wikimedia.org/wikipedia/en/9/95/Predator_Movie.jpg\",\n    \"description\": \"Dutch and his team are out on a mission to rescue a group of hostages in Central America. There, they discover that they are being targeted by an extraterrestrial warrior.\",\n    \"runtime\": 107,\n    \"genres\": \"ACTION, THRILLER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MOVIE Get all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MOVIE Get today's movies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTQzNDMzNywiaWF0IjoxNjUxMzQ3OTM3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.bIxxZJnSrjdgW3Vg17_sPUbkbRDL4dF-CXdAh4QDork2LvEnx2V4UIVvBeq9PD65TKhNXYLLVluTJ-zzjQ4dfg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/movies/today",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"today"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MOVIE Delete by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/movies/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PROJECTION",
+			"item": [
+				{
+					"name": "PROJECTION Get all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/movies/projections/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"projections",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECTION Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateTimeString\": \"2020-05-05T20:00\",\n    \"fee\": \"500.00\",\n    \"hallId\": 5,\n    \"movieId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movies/projection",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"projection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECTION Get future",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTQzNDMzNywiaWF0IjoxNjUxMzQ3OTM3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.bIxxZJnSrjdgW3Vg17_sPUbkbRDL4dF-CXdAh4QDork2LvEnx2V4UIVvBeq9PD65TKhNXYLLVluTJ-zzjQ4dfg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/movies/projections/future",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"projections",
+								"future"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECTION Get repertoire",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTQzNDMzNywiaWF0IjoxNjUxMzQ3OTM3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.bIxxZJnSrjdgW3Vg17_sPUbkbRDL4dF-CXdAh4QDork2LvEnx2V4UIVvBeq9PD65TKhNXYLLVluTJ-zzjQ4dfg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/movies/projections/repertoire",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"projections",
+								"repertoire"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECTION Get by Movie ID and date",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTQzNDMzNywiaWF0IjoxNjUxMzQ3OTM3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.bIxxZJnSrjdgW3Vg17_sPUbkbRDL4dF-CXdAh4QDork2LvEnx2V4UIVvBeq9PD65TKhNXYLLVluTJ-zzjQ4dfg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/movies/projections/1/2022-04-26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"projections",
+								"1",
+								"2022-04-26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECTION Get repertoire (Obrad)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTQ0MDQxMSwiaWF0IjoxNjUxMzU0MDExLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.a8AYQp7Vp9JUOJxpBFEyANiv4LMCXHHJ-YTXhe4nt6ckyB191ed4hIFERzeY90zsSbA2RvESCL2XM_JBPp6SvQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/movies/grouped/date",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"grouped",
+								"date"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECTION Get by Movie title",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTQ0MDQxMSwiaWF0IjoxNjUxMzU0MDExLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.a8AYQp7Vp9JUOJxpBFEyANiv4LMCXHHJ-YTXhe4nt6ckyB191ed4hIFERzeY90zsSbA2RvESCL2XM_JBPp6SvQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/movies/projections/movie/Dune",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"projections",
+								"movie",
+								"Dune"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECTION Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTQ0MDQxMSwiaWF0IjoxNjUxMzU0MDExLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.a8AYQp7Vp9JUOJxpBFEyANiv4LMCXHHJ-YTXhe4nt6ckyB191ed4hIFERzeY90zsSbA2RvESCL2XM_JBPp6SvQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/movies/projection/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"projection",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECTION Delete by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/movies/projections/12",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"projections",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

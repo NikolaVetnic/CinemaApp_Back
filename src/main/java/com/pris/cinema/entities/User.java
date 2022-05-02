@@ -1,6 +1,7 @@
 package com.pris.cinema.entities;
 
 import com.fasterxml.jackson.annotation.*;
+import com.pris.cinema.entities.dto.UserRegisterDto;
 import com.pris.cinema.entities.e.ERole;
 import com.pris.cinema.security.SecurityConstants;
 import lombok.Getter;
