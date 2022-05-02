@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegisterDto userRegisterDto, @PathVariable Long roleId, BindingResult result) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegisterDto userRegisterDto, BindingResult result) {
 
         User user = new User();
 
@@ -53,14 +53,13 @@ public class UserController {
         user.setConfirmPassword(userRegisterDto.getConfirmPassword());
         user.setFirstName(userRegisterDto.getFirstName());
         user.setLastName(userRegisterDto.getLastName());
-        user.setRole(roleRepository.findById(userRegisterDto.getRoleId()).get());
 
         userValidator.validate(user, result);
 
-        Optional<Role> optionalRole = roleRepository.findById(roleId);
+        Optional<Role> optionalRole = roleRepository.findById(userRegisterDto.getRoleId());
 
         if (!optionalRole.isPresent())
-            return new ResponseEntity<>("{\"msg\":\"Role with ID " + roleId + " not found.\"}", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("{\"msg\":\"Role with ID " + userRegisterDto.getRoleId() + " not found.\"}", HttpStatus.BAD_REQUEST);
 
         user.setRole(optionalRole.get());
 
