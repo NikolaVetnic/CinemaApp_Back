@@ -136,7 +136,7 @@ public class MovieController {
     public ResponseEntity<?> registerProjection(@Valid @RequestBody ProjectionRegisterDto projectionRegisterDto, BindingResult result) {
 
         Optional<Movie> movieOpt = movieRepository.findById(projectionRegisterDto.getMovieId());
-        Optional<Hall> hallOpt = hallRepository.findByName(projectionRegisterDto.getHallName());
+        Optional<Hall> hallOpt = hallRepository.findById(projectionRegisterDto.getHallId());
 
         if (!movieOpt.isPresent())
             return new ResponseEntity<>("{\"msg\":\"Movie not found.\"}", HttpStatus.BAD_REQUEST);
