@@ -141,7 +141,7 @@ public class ProjectionService {
 
         @Override
         public int compareTo(ProjectionData o) {
-            return dateTime.compareTo(o.dateTime);
+            return dateTime.toLocalTime().compareTo(o.dateTime.toLocalTime());
         }
     }
 
@@ -189,7 +189,7 @@ public class ProjectionService {
 
         for (Repertoire r : repertoires)
             for (MovieData md : r.movies)
-                md.projections.stream().sorted().collect(Collectors.toList());
+                md.projections = md.projections.stream().sorted().collect(Collectors.toList());
 
         return repertoires;
     }

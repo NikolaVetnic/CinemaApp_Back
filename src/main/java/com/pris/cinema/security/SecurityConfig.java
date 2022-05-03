@@ -58,6 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().sameOrigin().and()
                 .authorizeRequests().antMatchers(
                         "/",
+                        "/api/movies/grouped/date",
                         "/favicon.ico",
                         "/**/*.png",
                         "/**/*.gif",
