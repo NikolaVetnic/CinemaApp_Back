@@ -126,7 +126,7 @@ public class ProjectionService {
         }
     }
 
-    class ProjectionData {
+    class ProjectionData implements Comparable<ProjectionData> {
         public Long id;
         public LocalDateTime dateTime;
         public double fee;
@@ -137,6 +137,11 @@ public class ProjectionService {
             this.dateTime = projection.getDateTime();
             this.fee = projection.getFee();
             this.hallName = projection.getHall().getName();
+        }
+
+        @Override
+        public int compareTo(ProjectionData o) {
+            return dateTime.compareTo(o.dateTime);
         }
     }
 
@@ -181,6 +186,10 @@ public class ProjectionService {
                             md.projections.add(new ProjectionData(p));
                 }
         }
+
+        for (Repertoire r : repertoires)
+            for (MovieData md : r.movies)
+                md.projections.stream().sorted().collect(Collectors.toList());
 
         return repertoires;
     }
