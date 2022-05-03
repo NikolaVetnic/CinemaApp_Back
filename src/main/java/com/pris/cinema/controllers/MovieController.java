@@ -165,7 +165,7 @@ public class MovieController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/delete/{id}")
     public ResponseEntity<?> deleteMovieById(@PathVariable Long id) {
 
         Optional<Movie> movieOpt = movieRepository.findById(id);
@@ -179,7 +179,7 @@ public class MovieController {
     }
 
 
-    @DeleteMapping("/projections/{id}")
+    @PostMapping("/projections/delete/{id}")
     public ResponseEntity<?> deleteProjectionById(@PathVariable Long id) {
 
         Optional<Projection> projectionOpt = projectionRepository.findById(id);

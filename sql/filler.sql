@@ -25,3 +25,12 @@ INSERT INTO `pris_cinema`.`projection` (`id`, `date_time`, `fee`, `hall`, `movie
 INSERT INTO `pris_cinema`.`projection` (`id`, `date_time`, `fee`, `hall`, `movie`) VALUES ('2', '20220430', '200', '5', '2');
 INSERT INTO `pris_cinema`.`projection` (`id`, `date_time`, `fee`, `hall`, `movie`) VALUES ('3', '20220501', '300', '5', '3');
 INSERT INTO `pris_cinema`.`projection` (`id`, `date_time`, `fee`, `hall`, `movie`) VALUES ('4', '20220505', '400', '5', '4');
+
+INSERT INTO `pris_cinema`.`movie_genre` (`movie_id`, `genre_id`) VALUES ('1', '1');
+INSERT INTO `pris_cinema`.`movie_genre` (`movie_id`, `genre_id`) VALUES ('1', '3');
+INSERT INTO `pris_cinema`.`movie_genre` (`movie_id`, `genre_id`) VALUES ('2', '1');
+INSERT INTO `pris_cinema`.`movie_genre` (`movie_id`, `genre_id`) VALUES ('2', '3');
+INSERT INTO `pris_cinema`.`movie_genre` (`movie_id`, `genre_id`) VALUES ('3', '1');
+INSERT INTO `pris_cinema`.`movie_genre` (`movie_id`, `genre_id`) VALUES ('3', '3');
+INSERT INTO `pris_cinema`.`movie_genre` (`movie_id`, `genre_id`) VALUES ('4', '1');
+INSERT INTO `pris_cinema`.`movie_genre` (`movie_id`, `genre_id`) VALUES ('4', '3');

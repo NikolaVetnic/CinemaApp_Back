@@ -53,7 +53,7 @@ public class HallController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/delete/{id}")
     public ResponseEntity<?> deleteHall(@PathVariable Long id) {
 
         Optional<Hall> hallOpt = hallRepository.findById(id);
