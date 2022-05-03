@@ -13,7 +13,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,7 +64,7 @@ public class ProjectionService {
         return thisWeekProjections;
     }
 
-    public Map<LocalDate, Map<MovieDisplayDto, List<ProjectionDisplayDto>>> getMoviesGroupedByDate() {
+    public Map<LocalDate, Map<MovieDisplayDto, List<ProjectionDisplayDto>>> getMoviesGroupedByDateOld() {
 
         return getProjectionsThisWeek().stream()
                 .map(Projection::getDisplayDto)
@@ -78,5 +77,28 @@ public class ProjectionService {
                                 .collect(Collectors.groupingBy(
                                         ProjectionDisplayDto::getMovie,
                                         Collectors.toList()))));
+    }
+
+    public Map<LocalDate, Map<MovieDisplayDto, List<ProjectionDisplayDto>>> getMoviesGroupedByDate() {
+
+        List<Projection> projectionsThisWeek = getProjectionsThisWeek();
+
+        Map<LocalDate, Map<MovieDisplayDto, List<ProjectionDisplayDto>>> out = new HashMap<>();
+
+        for (int i = 0; i < 7; i++)
+            out.put(thisWeekMonday().plusDays(i).toLocalDate(), new HashMap<MovieDisplayDto, List<ProjectionDisplayDto>>());
+
+        for (Projection p : projectionsThisWeek) {
+
+            Map<MovieDisplayDto, List<ProjectionDisplayDto>> map = out.get(p.getDateTime().toLocalDate());
+            MovieDisplayDto movieDisplayDto = p.getMovie().getDisplayDto();
+
+            if (!map.containsKey(movieDisplayDto))
+                map.put(movieDisplayDto, new ArrayList<ProjectionDisplayDto>());
+
+            map.get(movieDisplayDto).add(p.getDisplayDto());
+        }
+
+        return out;
     }
 }
