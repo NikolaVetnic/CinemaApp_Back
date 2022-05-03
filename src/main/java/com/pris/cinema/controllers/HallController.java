@@ -76,7 +76,7 @@ public class HallController {
 
         hallRepository.delete(hall);
 
-        return new ResponseEntity<>("Hall with ID " + id + " deleted.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Hall with ID " + id + " deleted.", HttpStatus.OK);
     }
 
 
