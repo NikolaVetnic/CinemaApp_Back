@@ -1,7 +1,5 @@
 package com.pris.cinema.entities.dto;
 
-import com.pris.cinema.entities.Hall;
-import com.pris.cinema.entities.Movie;
 import com.pris.cinema.entities.Projection;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,23 +18,26 @@ public class ProjectionDisplayDto {
     private Long id;
     private LocalDateTime dateTime;
     private Double fee;
-    private HallDisplayDto hall;
-    private MovieDisplayDto movie;
+
+    private Long hallId;
+    private String hallName;
+
+    private Long movieId;
+    private String movieTitle;
 
     public ProjectionDisplayDto(Projection projection) {
         this.id = projection.getId();
         this.dateTime = projection.getDateTime();
         this.fee = projection.getFee();
-        this.hall = projection.getHall().getDisplayDto();
-        this.movie = projection.getMovie().getDisplayDto();
+
+        this.hallId = projection.getHall().getId();
+        this.hallName = projection.getHall().getName();
+
+        this.movieId = projection.getMovie().getId();
+        this.movieTitle = projection.getMovie().getTitle();
     }
 
     public LocalDate getDate() {
         return dateTime.toLocalDate();
-    }
-
-    @Override
-    public String toString() {
-        return movie.title + " at " + hall.name + " on " + dateTime;
     }
 }

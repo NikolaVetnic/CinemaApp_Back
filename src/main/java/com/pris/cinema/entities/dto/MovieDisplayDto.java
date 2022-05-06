@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -22,7 +22,8 @@ public class MovieDisplayDto {
     protected String image;
     protected String description;
     protected Integer runtime;
-    Set<Genre> genres = new TreeSet<>();
+    protected Set<Genre> genres;
+    public List<ProjectionDisplayDto> projections;
 
     public MovieDisplayDto(Movie movie) {
         this.id = movie.getId();
@@ -31,23 +32,6 @@ public class MovieDisplayDto {
         this.description = movie.getDescription();
         this.runtime = movie.getRuntime();
         this.genres = movie.getGenres();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MovieDisplayDto that = (MovieDisplayDto) o;
-        return id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return id.toString();
+        this.projections = new ArrayList<>();
     }
 }

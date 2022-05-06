@@ -5,9 +5,8 @@ import com.pris.cinema.entities.dto.MovieRegisterDto;
 import com.pris.cinema.entities.dto.ProjectionRegisterDto;
 import com.pris.cinema.repository.*;
 import com.pris.cinema.services.ProjectionService;
-import com.pris.cinema.utils.DateTimeParser;
+import com.pris.cinema.utils.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -146,7 +144,7 @@ public class MovieController {
 
         Projection newProjection = new Projection();
 
-        newProjection.setDateTime(DateTimeParser.dateTimeFromString(projectionRegisterDto.getDateTimeString()));
+        newProjection.setDateTime(DateTimeUtils.dateTimeFromString(projectionRegisterDto.getDateTimeString()));
         newProjection.setFee(projectionRegisterDto.getFee());
         newProjection.setHall(hall);
         newProjection.setMovie(movie);

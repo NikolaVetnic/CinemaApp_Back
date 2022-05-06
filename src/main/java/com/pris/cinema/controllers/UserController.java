@@ -2,7 +2,7 @@ package com.pris.cinema.controllers;
 
 import com.pris.cinema.entities.Role;
 import com.pris.cinema.entities.User;
-import com.pris.cinema.entities.dto.UserInfoDto;
+import com.pris.cinema.entities.dto.UserDisplayDto;
 import com.pris.cinema.entities.dto.UserRegisterDto;
 import com.pris.cinema.entities.e.ERole;
 import com.pris.cinema.payload.JwtLoginSuccessResponse;
@@ -15,7 +15,6 @@ import com.pris.cinema.services.UserService;
 import com.pris.cinema.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -68,7 +67,7 @@ public class UserController {
 
         User registeredUser = userService.saveUser(user);
 
-        return new ResponseEntity<>(new UserInfoDto(registeredUser), HttpStatus.CREATED);
+        return new ResponseEntity<>(new UserDisplayDto(registeredUser), HttpStatus.CREATED);
     }
 
     @GetMapping("/me")
@@ -77,7 +76,7 @@ public class UserController {
         User principal = securityUtils.getSelf();
 
         if (principal != null)
-            return new ResponseEntity<>(new UserInfoDto(principal), HttpStatus.OK);
+            return new ResponseEntity<>(new UserDisplayDto(principal), HttpStatus.OK);
         else
             return new ResponseEntity<>("{\"msg\":\"Invalid token.\"}", HttpStatus.UNAUTHORIZED);
     }

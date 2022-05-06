@@ -1,9 +1,12 @@
 package com.pris.cinema.utils;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class DateTimeParser {
+public class DateTimeUtils {
+
 
     public static LocalDateTime dateTimeFromString(String dateTimeString) {
 
@@ -14,5 +17,16 @@ public class DateTimeParser {
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, dtf);
 
         return dateTime;
+    }
+
+
+    public static LocalDateTime thisWeekMonday() {
+
+        LocalDateTime monday = LocalDate.now().atTime(0, 0);
+
+        while (monday.getDayOfWeek() != DayOfWeek.MONDAY)
+            monday = monday.minusDays(1);
+
+        return monday;
     }
 }

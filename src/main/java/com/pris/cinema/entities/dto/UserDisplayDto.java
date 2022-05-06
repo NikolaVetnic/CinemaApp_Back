@@ -12,7 +12,7 @@ import java.util.Date;
 @Accessors(chain = true)
 @Getter
 @Setter
-public class UserInfoDto {
+public class UserDisplayDto {
 
     protected Long id;
     protected String username;
@@ -22,7 +22,7 @@ public class UserInfoDto {
     protected Date createdAt;
     protected Date updatedAt;
 
-    public UserInfoDto(User user) {
+    public UserDisplayDto(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.firstName = user.getFirstName();

@@ -1,0 +1,14 @@
+//    public Map<LocalDate, Map<MovieDisplayDto, List<ProjectionDisplayDto>>> getMoviesGroupedByDateOld() {
+//
+//        return getProjectionsThisWeek().stream()
+//                .map(Projection::getDisplayDto)
+//                .collect(Collectors.groupingBy(
+//                        ProjectionDisplayDto::getDate,
+//                        Collectors.toList())).entrySet().stream()
+//                .collect(Collectors.toMap(
+//                        Map.Entry::getKey,
+//                        e -> e.getValue().stream()
+//                                .collect(Collectors.groupingBy(
+//                                        ProjectionDisplayDto::getMovie,
+//                                        Collectors.toList()))));
+//    }
