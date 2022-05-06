@@ -22,10 +22,10 @@ public class HallDisplayDto {
         this.id = hall.getId();
         this.name = hall.getName();
         this.seatsGroundFloor = Math.toIntExact(
-                hall.getSeats().stream().map(seat -> seat.getSection().getSection().equals("GROUND_FLOOR")).count());
+                hall.getSeats().stream().filter(seat -> seat.getSection().getSection().equals("GROUND_FLOOR")).count());
         this.seatsGalleryLeft = Math.toIntExact(
-                hall.getSeats().stream().map(seat -> seat.getSection().getSection().equals("GALLERY_LEFT")).count());
+                hall.getSeats().stream().filter(seat -> seat.getSection().getSection().equals("GALLERY_LEFT")).count());
         this.seatsGalleryRight = Math.toIntExact(
-                hall.getSeats().stream().map(seat -> seat.getSection().getSection().equals("GALLERY_RIGHT")).count());
+                hall.getSeats().stream().filter(seat -> seat.getSection().getSection().equals("GALLERY_RIGHT")).count());
     }
 }
