@@ -34,7 +34,6 @@ public class ProjectionService {
     }
 
 
-    //sve projekcije datog datuma za dati film
     public List<Projection> getProjectionsByMovieAndDateTime(Long movieId, LocalDate date) {
 
         if (!movieRepository.findById(movieId).isPresent())

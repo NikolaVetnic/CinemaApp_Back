@@ -1,6 +1,5 @@
 package com.pris.cinema.controllers;
 
-import com.pris.cinema.entities.User;
 import com.pris.cinema.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
