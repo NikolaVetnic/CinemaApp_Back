@@ -18,7 +18,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"a@nikolapacekvetnic.rs\",\n    \"firstName\": \"Nikola\",\n    \"lastName\": \"Vetnic\",\n    \"roleId\": 1,\n    \"password\": \"adMIN1234!\",\n    \"confirmPassword\": \"adMIN1234!\"\n}",
+							"raw": "{\n    \"username\": \"admin@nikolapacekvetnic.rs\",\n    \"firstName\": \"Nikola\",\n    \"lastName\": \"Vetnic\",\n    \"roleId\": 1,\n    \"password\": \"adMIN1234!\",\n    \"confirmPassword\": \"adMIN1234!\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -168,13 +168,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTkwNzUzMywiaWF0IjoxNjUxODIxMTMzLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0._SoF3ArSK_awTVmVZsBn-6UVBzZfJeljQmveGRWHZnZXc5k52R9Prg3MLPJuJQCUHow25F7ohpkHFP3Nz2YjYA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Mala sala\",\n    \"seatsGroundFloor\": 2,\n    \"seatsGalleryLeft\": 1,\n    \"seatsGalleryRight\": 1\n}",
+							"raw": "{\n    \"name\": \"Zuta sala\",\n    \"seatsGroundFloor\": 2,\n    \"seatsGalleryLeft\": 1,\n    \"seatsGalleryRight\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -202,7 +202,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTkwNzUzMywiaWF0IjoxNjUxODIxMTMzLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0._SoF3ArSK_awTVmVZsBn-6UVBzZfJeljQmveGRWHZnZXc5k52R9Prg3MLPJuJQCUHow25F7ohpkHFP3Nz2YjYA",
 								"type": "text"
 							}
 						],
@@ -430,13 +430,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTY4ODA4OCwiaWF0IjoxNjUxNjAxNjg4LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.wx_ESq0zkZZSPqazLkRY7Lqop15wO-UOcYrlioAP3mguYEIofEs_7UxZT7-3b7tvwz9Rx9GtYdpEMybS216I2w",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"dateTimeString\": \"2020-05-05T20:00\",\n    \"fee\": \"500.00\",\n    \"hallId\": 5,\n    \"movieId\": 1\n}",
+							"raw": "{\n    \"dateTimeString\": \"2022-05-03T17:00\",\n    \"fee\": \"500.00\",\n    \"hallId\": 1,\n    \"movieId\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -549,8 +549,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTQ0MDQxMSwiaWF0IjoxNjUxMzU0MDExLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.a8AYQp7Vp9JUOJxpBFEyANiv4LMCXHHJ-YTXhe4nt6ckyB191ed4hIFERzeY90zsSbA2RvESCL2XM_JBPp6SvQ",
+								"key": "",
+								"value": "",
 								"type": "text"
 							}
 						],
@@ -647,6 +647,73 @@
 								"movies",
 								"projections",
 								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COMMENT",
+			"item": [
+				{
+					"name": "COMMENT Find all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTkxMTgwMywiaWF0IjoxNjUxODI1NDAzLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.zUgrNii9bwQE4XFhrTHlOsIk2qLyGNHYsjsm_cG3RkPredW_lXWZsDP83vbTwGnBK1Csvh7lB6OutPWOvwkJoQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "COMMENT Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTkxMTgwMywiaWF0IjoxNjUxODI1NDAzLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.zUgrNii9bwQE4XFhrTHlOsIk2qLyGNHYsjsm_cG3RkPredW_lXWZsDP83vbTwGnBK1Csvh7lB6OutPWOvwkJoQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Spicediver's cut is the ultimate version.\",\n    \"movieId\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/comments/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comments",
+								"new"
 							]
 						}
 					},
