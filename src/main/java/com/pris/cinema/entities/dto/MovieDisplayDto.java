@@ -10,6 +10,7 @@ import lombok.experimental.Accessors;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -23,7 +24,8 @@ public class MovieDisplayDto {
     protected String description;
     protected Integer runtime;
     protected Set<Genre> genres;
-    public List<ProjectionDisplayDto> projections;
+    protected List<ProjectionDisplayDto> projections;
+    protected List<CommentDisplayDto> comments;
 
     public MovieDisplayDto(Movie movie) {
         this.id = movie.getId();
@@ -33,5 +35,7 @@ public class MovieDisplayDto {
         this.runtime = movie.getRuntime();
         this.genres = movie.getGenres();
         this.projections = new ArrayList<>();
+        this.comments = movie.getComments().stream()
+                .map(c -> c.getDisplayDto()).collect(Collectors.toList());
     }
 }

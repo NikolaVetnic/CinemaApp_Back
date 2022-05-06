@@ -1,6 +1,7 @@
 package com.pris.cinema.entities;
 
 import com.fasterxml.jackson.annotation.*;
+import com.pris.cinema.entities.dto.UserDisplayDto;
 import com.pris.cinema.entities.dto.UserRegisterDto;
 import com.pris.cinema.entities.e.ERole;
 import com.pris.cinema.security.SecurityConstants;
@@ -29,29 +30,42 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     protected Long id;
 
     @Email(message = "Username needs to be an email")
     @NotBlank(message = "Username field is required")
+    @Column(name = "username", nullable = false)
     protected String username;
 
     @NotBlank(message = "Please enter your first name")
+    @Column(name = "first_name", nullable = false)
     protected String firstName;
 
     @NotBlank(message = "Please enter your last name")
+    @Column(name = "last_name", nullable = false)
     protected String lastName;
 
     @JsonBackReference
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "roleId")
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @NotBlank(message = "Password field is required")
+    @Column(name = "password", nullable = false)
     protected String password;
 
     @Transient
     protected String confirmPassword;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Ticket> tickets = new LinkedList<>();
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Comment> comments = new LinkedList<>();
 
     @Column(updatable = false)
     @JsonFormat(pattern = "yyyy-mm-dd")
@@ -60,12 +74,12 @@ public class User implements UserDetails {
     @JsonFormat(pattern = "yyyy-mm-dd")
     protected Date updatedAt;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-    protected List<Ticket> tickets = new LinkedList<>();
-
     @PrePersist protected void onCreate()   { this.createdAt = new Date(); }
     @PreUpdate protected void onUpdate()    { this.updatedAt = new Date(); }
+
+    public UserDisplayDto getDisplayDto() {
+        return new UserDisplayDto(this);
+    }
 
     public ERole roleAsEnum() {
         return ERole.values()[(int) (role.id - 1)];

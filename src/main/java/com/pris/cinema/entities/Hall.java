@@ -24,9 +24,11 @@ public class Hall {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     protected Long id;
 
     @NotBlank(message = "Please enter hall name")
+    @Column(name = "name", nullable = false)
     protected String name;
 
     @JsonManagedReference

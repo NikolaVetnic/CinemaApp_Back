@@ -28,31 +28,40 @@ public class Movie implements Comparable<Movie> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     protected Long id;
 
     @NotBlank(message = "Please enter title name")
+    @Column(name = "title", nullable = false)
     protected String title;
 
     @NotBlank(message = "Please enter image URL")
+    @Column(name = "image", nullable = false)
     protected String image;
 
     @NotBlank(message = "Please enter description")
+    @Column(name = "description", nullable = false)
     protected String description;
 
     @Min(value = 60, message = "Runtime must be greater than {value}.")
     @Max(value = 300, message = "Runtime must be lesser than than {value}.")
+    @Column(name = "runtime")
     protected Integer runtime;
 
     @ManyToMany
     @JoinTable(
-        name = "MovieGenre",
-        joinColumns = @JoinColumn(name = "movieId"),
-        inverseJoinColumns = @JoinColumn(name = "genreId"))
+        name = "movie_genre",
+        joinColumns = @JoinColumn(name = "movie_id"),
+        inverseJoinColumns = @JoinColumn(name = "genre_id"))
     Set<Genre> genres = new TreeSet<>();
 
     @JsonBackReference
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
     protected List<Projection> projections = new LinkedList<>();
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Comment> comments = new LinkedList<>();
 
     @Override
     public int compareTo(Movie other) {

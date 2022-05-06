@@ -8,6 +8,8 @@ import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -25,6 +27,8 @@ public class ProjectionDisplayDto {
     private Long movieId;
     private String movieTitle;
 
+    private MovieDisplayDto movie;
+
     public ProjectionDisplayDto(Projection projection) {
         this.id = projection.getId();
         this.dateTime = projection.getDateTime();
@@ -33,8 +37,7 @@ public class ProjectionDisplayDto {
         this.hallId = projection.getHall().getId();
         this.hallName = projection.getHall().getName();
 
-        this.movieId = projection.getMovie().getId();
-        this.movieTitle = projection.getMovie().getTitle();
+        this.movie = projection.getMovie().getDisplayDto();
     }
 
     public LocalDate getDate() {

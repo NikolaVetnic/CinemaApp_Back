@@ -1,0 +1,38 @@
+MANY-TO-MANY
+
+    @ManyToMany
+    @JoinTable(
+        name = "movie_genre",
+        joinColumns = @JoinColumn(name = "movie_id"),
+        inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    Set<Genre> genres = new TreeSet<>();
+
+    IME PRESECNE TABELE: "movie_genre"
+    IME KOLONA U PRESECNOJ TABELI: "movie_id", "genre_id"
+
+    ...
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "genres")
+    Set<Movie> movies = new TreeSet<>();
+
+    VLASNIK VEZE: polje "genres" u drugom objektu
+
+ONE-TO-MANY / MANY-TO-ONE
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Projection> projections = new LinkedList<>();
+
+    VLASNIK VEZE: polje "movie" u drugom objektu
+    SPRECAVANJE REKURZIJE: BackReference, ovaj objekat NECE stampati objekat drugog tipa
+
+    ...
+
+    @JsonBackReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    protected Movie movie;
+
+    IME KOLONE U TABELI OVOG OBJEKTA: "movie_id"

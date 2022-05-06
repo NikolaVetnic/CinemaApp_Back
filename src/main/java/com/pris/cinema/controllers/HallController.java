@@ -1,7 +1,6 @@
 package com.pris.cinema.controllers;
 
 import com.pris.cinema.entities.*;
-import com.pris.cinema.entities.dto.HallDisplayDto;
 import com.pris.cinema.entities.dto.HallRegisterDto;
 import com.pris.cinema.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
