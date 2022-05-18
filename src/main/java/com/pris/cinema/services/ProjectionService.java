@@ -68,4 +68,17 @@ public class ProjectionService {
 
         return repertoireDisplayDto;
     }
+
+    public List<Projection> getBestRatedProjections() {
+
+        return projectionRepository
+                .findAllByMonthAndRating(
+                        LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth().getValue(), 1,
+                                LocalDateTime.now().getHour(), LocalDateTime.now().getMinute()),
+                        LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth().getValue(),
+                                LocalDateTime.now().getMonth().maxLength(), LocalDateTime.now().getHour(),
+                                LocalDateTime.now().getMinute()))
+                .stream().filter(p -> p.getMovie().getRating() > 4).collect(Collectors.toList());
+    }
+
 }
