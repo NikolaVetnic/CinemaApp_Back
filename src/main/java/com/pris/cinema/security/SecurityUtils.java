@@ -15,7 +15,19 @@ public class SecurityUtils {
 
     @Autowired private UserRepository userRepository;
 
-    public boolean checkRole(ERole role) {
+    public boolean isAdmin() {
+        return checkRole(ERole.ADMIN);
+    }
+
+    public boolean isEmployee() {
+        return checkRole(ERole.EMPLOYEE);
+    }
+
+    public boolean isUser() {
+        return checkRole(ERole.USER);
+    }
+
+    private boolean checkRole(ERole role) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Optional<User> principal = userRepository.findByUsername(authentication.getName());
