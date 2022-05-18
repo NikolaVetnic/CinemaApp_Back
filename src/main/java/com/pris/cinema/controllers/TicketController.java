@@ -67,4 +67,9 @@ public class TicketController {
             @Valid @RequestBody PeriodDto periodDto, BindingResult result) {
         return new ResponseEntity<>(ticketService.getProfitForPeriod(periodDto), HttpStatus.OK);
     }
+
+    @PostMapping("/del/{projectionId}")
+    public ResponseEntity<?> deleteReservationsForProjection(@PathVariable Long projectionId) {
+        return ticketService.deleteReservationsForProjection(projectionId);
+    }
 }

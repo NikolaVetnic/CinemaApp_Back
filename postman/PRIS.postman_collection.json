@@ -72,7 +72,14 @@
 					"name": "USER Login",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"username\": \"admin@nikolapacekvetnic.rs\",\n    \"password\": \"adMIN1234!\"\n}",
@@ -124,6 +131,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "USER Create with User role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"user@nikolapacekvetnic.rs\",\n    \"firstName\": \"User\",\n    \"lastName\": \"User\",\n    \"roleId\": 2,\n    \"password\": \"adMIN1234!\",\n    \"confirmPassword\": \"adMIN1234!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -168,13 +205,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTkwNzUzMywiaWF0IjoxNjUxODIxMTMzLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0._SoF3ArSK_awTVmVZsBn-6UVBzZfJeljQmveGRWHZnZXc5k52R9Prg3MLPJuJQCUHow25F7ohpkHFP3Nz2YjYA",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk1MDU4MiwiaWF0IjoxNjUyODY0MTgyLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.bJiIkg_dSh9GdE2Mvgz6WjPgCYtLMVBUzZbAA79W2wHPO0ADeZVUSQHHbkbdVSCVK-p4WRPWU5V2GuMcgkap5g",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Zuta sala\",\n    \"seatsGroundFloor\": 2,\n    \"seatsGalleryLeft\": 1,\n    \"seatsGalleryRight\": 1\n}",
+							"raw": "{\n    \"name\": \"Mala sala\",\n    \"seatsGroundFloor\": 2,\n    \"seatsGalleryLeft\": 1,\n    \"seatsGalleryRight\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -403,7 +440,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTU5MDUzNSwiaWF0IjoxNjUxNTA0MTM1LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.1H85DVvlD-dqXjtZjOMbEbSVnK43YguNkb6sB-mB2G4SJrZfrEEWrCO85krgZOxAikrRsM86WbTJ_ar9rKElqw",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk1NTUwNywiaWF0IjoxNjUyODY5MTA3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.0rW2ZvCJv2gI775Y7GoIhu2zKexf2OnwWB5mSN_FoD-n2NZVNZVjVlM2I_6hghEYCdSoLLpbLVMKOlwpcdR6mg",
 								"type": "text"
 							}
 						],
@@ -465,7 +502,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MTQzNDMzNywiaWF0IjoxNjUxMzQ3OTM3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.bIxxZJnSrjdgW3Vg17_sPUbkbRDL4dF-CXdAh4QDork2LvEnx2V4UIVvBeq9PD65TKhNXYLLVluTJ-zzjQ4dfg",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk1NTUwNywiaWF0IjoxNjUyODY5MTA3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.0rW2ZvCJv2gI775Y7GoIhu2zKexf2OnwWB5mSN_FoD-n2NZVNZVjVlM2I_6hghEYCdSoLLpbLVMKOlwpcdR6mg",
 								"type": "text"
 							}
 						],
@@ -714,6 +751,278 @@
 								"api",
 								"comments",
 								"new"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TICKET",
+			"item": [
+				{
+					"name": "TICKET Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJVc2VyIiwibGFzdE5hbWUiOiJVc2VyIiwiaWQiOiIyIiwiZXhwIjoxNjUyOTUyNTc1LCJpYXQiOjE2NTI4NjYxNzUsInVzZXJuYW1lIjoidXNlckBuaWtvbGFwYWNla3ZldG5pYy5ycyJ9.9ftUQnGuA3-ozV4phf4w7-DcQ8veJfT4wQsvMHpGFgaplUbUJ7zoaEs-sgUyYvOFwZVUsWPTH8meiq041OyGjA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"projectionId\": 1,\n    \"seatId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TICKET Create simple",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMiIsImV4cCI6MTY1Mjk2MDk2NiwiaWF0IjoxNjUyODc0NTY2LCJ1c2VybmFtZSI6InVzZXJAbmlrb2xhcGFjZWt2ZXRuaWMucnMifQ.xEYPMslRi7GJ887dkV_xtJVoYXyzTgS1UslsSusM198uijOSUpF7MHAdfBveSC1-2bYErDZE3cWAzp_IcpgolA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"projectionId\": 1,\n    \"sectionId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tickets/simple",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets",
+								"simple"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TICKET Get all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk2MTA1MywiaWF0IjoxNjUyODc0NjUzLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.kehnl7nuiY2rfdxNzkKD3JeL8r0BVHM7kfdz3RELCVC0W-2IpAIyQX7YNBiOR6wlla1mm31ik2PaBQgRO5C1UA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/tickets/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TICKET Change status to Paid",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk1NTUwNywiaWF0IjoxNjUyODY5MTA3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.0rW2ZvCJv2gI775Y7GoIhu2zKexf2OnwWB5mSN_FoD-n2NZVNZVjVlM2I_6hghEYCdSoLLpbLVMKOlwpcdR6mg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/tickets/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TICKET Price for tickets by User for Projection",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk1NTUwNywiaWF0IjoxNjUyODY5MTA3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.0rW2ZvCJv2gI775Y7GoIhu2zKexf2OnwWB5mSN_FoD-n2NZVNZVjVlM2I_6hghEYCdSoLLpbLVMKOlwpcdR6mg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"projectionId\": 1,\n    \"username\": \"user@nikolapacekvetnic.rs\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tickets/pay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets",
+								"pay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TICKET Pay for tickets by User for Projection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk1NTUwNywiaWF0IjoxNjUyODY5MTA3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.0rW2ZvCJv2gI775Y7GoIhu2zKexf2OnwWB5mSN_FoD-n2NZVNZVjVlM2I_6hghEYCdSoLLpbLVMKOlwpcdR6mg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"projectionId\": 1,\n    \"username\": \"user@nikolapacekvetnic.rs\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tickets/pay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets",
+								"pay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TICKET Get profit for period",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk1NTUwNywiaWF0IjoxNjUyODY5MTA3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.0rW2ZvCJv2gI775Y7GoIhu2zKexf2OnwWB5mSN_FoD-n2NZVNZVjVlM2I_6hghEYCdSoLLpbLVMKOlwpcdR6mg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDateString\": \"2022-04-25\",\n    \"endDateString\": \"2022-04-29\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tickets/profit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets",
+								"profit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TICKET Delete reservations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk2MTA1MywiaWF0IjoxNjUyODc0NjUzLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.kehnl7nuiY2rfdxNzkKD3JeL8r0BVHM7kfdz3RELCVC0W-2IpAIyQX7YNBiOR6wlla1mm31ik2PaBQgRO5C1UA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/tickets/del/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets",
+								"del",
+								"1"
 							]
 						}
 					},

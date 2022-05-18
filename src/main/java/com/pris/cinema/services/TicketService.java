@@ -135,6 +135,26 @@ public class TicketService {
     }
 
 
+    public ResponseEntity<?> deleteReservationsForProjection(Long projectionId) {
+
+        Optional<Projection> projectionOpt = projectionRepository.findById(projectionId);
+
+        if (!projectionOpt.isPresent())
+            return new ResponseEntity<>("No such projection", HttpStatus.BAD_REQUEST);
+
+        projectionOpt.get().getTickets().stream()
+                .filter(ticket -> ticket.getTicketStatus().getId() == 1)
+                .forEach(ticket -> {
+                    ticketRepository.delete(ticket);
+                });
+
+        String msg = "Unpaid reservations for " + projectionOpt.get().getMovie().getTitle() +
+                " on " + projectionOpt.get().getDateTime() + " deleted.";
+
+        return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
+    }
+
+
     private ResponseEntity<?> handleTicketsForProjectionAndUser(
             TicketPayDto ticketPayDto, BindingResult result, Boolean changeStatusToPaid) {
 
