@@ -1,5 +1,6 @@
 package com.pris.cinema.controllers;
 
+import com.pris.cinema.entities.Projection;
 import com.pris.cinema.entities.dto.MovieRegisterDto;
 import com.pris.cinema.entities.dto.ProjectionRegisterDto;
 import com.pris.cinema.entities.dto.RatingRegisterDto;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/movies")
@@ -77,7 +80,10 @@ public class MovieController {
 
     @GetMapping("/projections/all")
     public ResponseEntity<?> getAllProjections() {
-        return new ResponseEntity<>(projectionRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(
+                ((List<Projection>) projectionRepository.findAll())
+                        .stream().map(Projection::getDisplayDto).collect(Collectors.toList()),
+                HttpStatus.OK);
     }
 
   
@@ -91,6 +97,7 @@ public class MovieController {
     public ResponseEntity<?> rateMovie(@PathVariable Long id, @Valid @RequestBody RatingRegisterDto ratingDto, BindingResult result) {
         return new ResponseEntity<>(movieService.addRating(id, ratingDto) , HttpStatus.OK);
     }
+
 
     @GetMapping("/projections/movie/{title}")
     public ResponseEntity<?> getProjectionsByMovieName(@PathVariable("title") String title) {
@@ -114,6 +121,7 @@ public class MovieController {
     public ResponseEntity<?> deleteProjectionById(@PathVariable Long id) {
         return movieService.deleteProjectionById(id);
     }
+
 
     @GetMapping("/projections/bestrated")
     public ResponseEntity<?> getBestRatedProjections() {

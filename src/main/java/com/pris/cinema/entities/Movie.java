@@ -39,6 +39,10 @@ public class Movie implements Comparable<Movie> {
     @Column(name = "image", nullable = false)
     protected String image;
 
+    @NotBlank(message = "Please enter trailer URL")
+    @Column(name = "trailer", nullable = false)
+    protected String trailer;
+
     @NotBlank(message = "Please enter description")
     @Column(name = "description", nullable = false)
     protected String description;
@@ -48,10 +52,10 @@ public class Movie implements Comparable<Movie> {
     @Column(name = "runtime")
     protected Integer runtime;
 
-    @Column(name = "ratingSum")
+    @Column(name = "rating_sum")
     protected Integer ratingSum;
 
-    @Column(name = "ratingCount")
+    @Column(name = "rating_count")
     protected Double ratingCount;
 
     @ManyToMany
@@ -70,10 +74,11 @@ public class Movie implements Comparable<Movie> {
     protected List<Comment> comments = new LinkedList<>();
 
     public double getRating(){
-        if(ratingCount !=0){
-            return ratingSum/ratingCount;
-        }
-        else return 0.0;
+
+        if (ratingCount != null)
+            return 1.0 * ratingSum / ratingCount;
+
+        return 0.0;
     }
 
     @Override

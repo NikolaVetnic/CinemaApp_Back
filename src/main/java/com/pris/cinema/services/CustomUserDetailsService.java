@@ -14,7 +14,9 @@ import java.util.Optional;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+
     @Autowired private UserRepository userRepository;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -24,6 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return user.get();
     }
+
 
     @Transactional
     public User loadUserById(Long id) {

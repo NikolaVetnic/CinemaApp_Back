@@ -16,19 +16,19 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "section")
-public class Section {
+@Table(name = "ticket_status")
+public class TicketStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     protected Long id;
 
-    @NotBlank(message = "Please enter role")
-    protected String section;
-
-    protected Double modifier;
+    @NotBlank(message = "Please enter ticket status")
+    @Column(name = "status", nullable = false)
+    protected String status;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "section", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-    protected List<Seat> seats = new LinkedList<>();
+    @OneToMany(mappedBy = "ticketStatus", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    protected List<Ticket> tickets = new LinkedList<>();
 }

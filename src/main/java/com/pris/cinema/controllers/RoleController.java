@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/roles")
 public class RoleController {
 
+
     @Autowired
     private RoleRepository roleRepository;
+
 
     @GetMapping("")
     public ResponseEntity<?> getAll() {

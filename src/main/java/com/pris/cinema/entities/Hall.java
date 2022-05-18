@@ -11,8 +11,11 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -41,5 +44,23 @@ public class Hall {
 
     public HallDisplayDto getDisplayDto() {
         return new HallDisplayDto(this);
+    }
+
+    public boolean containsSeat(Seat seat) {
+        return seats.contains(seat);
+    }
+
+    public List<Section> getSections() {
+        return seats.stream().map(Seat::getSection).distinct().collect(Collectors.toList());
+    }
+
+    public Map<Section, Long> getSeatCnt() {
+
+        Map<Section, Long> seatCnt = new HashMap<>();
+
+        for (Section s : seats.stream().map(Seat::getSection).distinct().collect(Collectors.toList()))
+            seatCnt.put(s, seats.stream().filter(seat -> seat.getSection().equals(s)).count());
+
+        return seatCnt;
     }
 }

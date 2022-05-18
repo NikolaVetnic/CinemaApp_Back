@@ -2,6 +2,7 @@ package com.pris.cinema.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.pris.cinema.entities.dto.TicketDisplayDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,4 +40,18 @@ public class Ticket {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     protected User user;
+
+    @JsonBackReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_id")
+    private TicketStatus ticketStatus;
+
+    public TicketDisplayDto getDisplayDto() {
+        return new TicketDisplayDto(this);
+    }
+
+    public Double getPrice() {
+        return projection.getFee() * seat.getSection().getModifier();
+    }
 }

@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -55,5 +56,30 @@ public class Projection {
 
     public ProjectionDisplayDto getDisplayDto() {
         return new ProjectionDisplayDto(this);
+    }
+
+    public Long seatsAvailableInSectionCnt(Section section) {
+
+        long seatsAvailable = hall.getSeats().stream().filter(seat -> seat.getSection().equals(section)).count();
+        long seatsTaken = tickets.stream().filter(t -> t.getSeat().getSection().equals(section)).count();
+
+        return seatsAvailable - seatsTaken;
+    }
+
+    public boolean seatsAvailableInSection(Section section) {
+        return seatsAvailableInSectionCnt(section) > 0;
+    }
+
+    public Seat getAvailableSeatInSection(Section section) {
+
+        List<Seat> available = hall.getSeats().stream()
+                .filter(seat -> seat.getSection().equals(section)).collect(Collectors.toList());
+
+        List<Seat> taken = tickets.stream()
+                .filter(t -> t.getSeat().getSection().equals(section)).map(Ticket::getSeat).collect(Collectors.toList());
+
+        available.removeAll(taken);
+
+        return available.get(0);
     }
 }

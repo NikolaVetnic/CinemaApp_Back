@@ -52,3 +52,7 @@ INSERT INTO `pris_cinema`.`comment` (`id`, `content`, `date_time`, `movie_id`, `
 INSERT INTO `pris_cinema`.`comment` (`id`, `content`, `date_time`, `movie_id`, `user_id`) VALUES ('2', 'Slabiji nego prvi ali dobar...', '2022-05-04T18:45', '2', '1');
 INSERT INTO `pris_cinema`.`comment` (`id`, `content`, `date_time`, `movie_id`, `user_id`) VALUES ('3', 'Klasika!', '2022-05-04T19:00', '3', '1');
 INSERT INTO `pris_cinema`.`comment` (`id`, `content`, `date_time`, `movie_id`, `user_id`) VALUES ('4', 'I shall not fear, fear is the mind killer...', '2022-05-04T20:30', '4', '1');
+
+SELECT * FROM ticket_status;
+INSERT INTO `pris_cinema`.`ticket_status` (`id`, `status`) VALUES ('1', 'RESERVED');
+INSERT INTO `pris_cinema`.`ticket_status` (`id`, `status`) VALUES ('2', 'PAID');

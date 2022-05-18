@@ -52,6 +52,7 @@ public class CommentService {
         return new ResponseEntity<>(persistedComment, HttpStatus.OK);
     }
 
+
     public ResponseEntity<?> deleteCommentById(@PathVariable Long id) {
 
         Optional<Comment> commentOpt = commentRepository.findById(id);
@@ -73,6 +74,4 @@ public class CommentService {
 
         return new ResponseEntity<>("Comment with ID " + id + " deleted.", HttpStatus.OK);
     }
-
-
 }

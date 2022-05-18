@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test")
 public class TestController {
 
+
     @Autowired private RoleRepository roleRepository;
     @Autowired private SecurityUtils securityUtils;
+
 
     @GetMapping("")
     public ResponseEntity<?> getTestMessage() {
         return new ResponseEntity<>("Your ROLE is : " + securityUtils.getRole(), HttpStatus.OK);
     }
+
 
     @GetMapping("/roles")
     public ResponseEntity<?> getRoles() {

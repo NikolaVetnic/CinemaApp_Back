@@ -26,12 +26,14 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
 
+
     @Autowired private MapValidationErrorService mapValidationErrorService;
     @Autowired private RoleRepository roleRepository;
     @Autowired private SecurityUtils securityUtils;
     @Autowired private UserRepository userRepository;
     @Autowired private UserService userService;
     @Autowired private UserValidator userValidator;
+
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) {
@@ -41,6 +43,7 @@ public class UserController {
 
         return ResponseEntity.ok(new JwtLoginSuccessResponse(true, userService.getJwt(loginRequest)));
     }
+
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegisterDto userRegisterDto, BindingResult result) {
@@ -70,6 +73,7 @@ public class UserController {
         return new ResponseEntity<>(new UserDisplayDto(registeredUser), HttpStatus.CREATED);
     }
 
+
     @GetMapping("/me")
     public ResponseEntity<?> getSelf() {
 
@@ -80,6 +84,7 @@ public class UserController {
         else
             return new ResponseEntity<>("{\"msg\":\"Invalid token.\"}", HttpStatus.UNAUTHORIZED);
     }
+
 
     @GetMapping("/")
     public ResponseEntity<?> getAll() {

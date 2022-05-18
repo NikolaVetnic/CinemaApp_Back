@@ -25,7 +25,6 @@ public class HallController {
     @Autowired
     private HallService hallService;
 
-
     @GetMapping("")
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(hallRepository.findAll(), HttpStatus.OK);
