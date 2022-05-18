@@ -3,6 +3,7 @@ package com.pris.cinema.services;
 import com.pris.cinema.entities.*;
 import com.pris.cinema.entities.dto.MovieRegisterDto;
 import com.pris.cinema.entities.dto.ProjectionRegisterDto;
+import com.pris.cinema.entities.dto.RatingRegisterDto;
 import com.pris.cinema.repository.*;
 import com.pris.cinema.utils.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,4 +136,41 @@ public class MovieService {
 
         return new ResponseEntity<>("Projection with ID " + id + " deleted.", HttpStatus.OK);
     }
+
+    public ResponseEntity<?> addRating(@PathVariable Long id,@Valid @RequestBody RatingRegisterDto ratingDto){
+
+        Optional<Movie> movieOpt = movieRepository.findById(id);
+
+        if (!movieOpt.isPresent())
+            return new ResponseEntity<>("{\"msg\":\"Movie not found.\"}", HttpStatus.BAD_REQUEST);
+
+        Movie movie = movieOpt.get();
+
+        Integer ratingSum = movie.getRatingSum();
+        Double ratingCount = movie.getRatingCount();
+
+        ratingSum = ratingSum + ratingDto.getRating();
+        ratingCount++;
+
+        movie.setRatingSum(ratingSum);
+        movie.setRatingCount(ratingCount);
+
+        Movie persistedMovie = movieRepository.save(movie);
+
+        return new ResponseEntity<>(persistedMovie, HttpStatus.OK);
+
+    }
+
+    public ResponseEntity<?> getRating(@PathVariable Long id){
+
+        Optional<Movie> movieOpt = movieRepository.findById(id);
+
+        if (!movieOpt.isPresent())
+            return new ResponseEntity<>("{\"msg\":\"Movie not found.\"}", HttpStatus.BAD_REQUEST);
+
+        Movie movie = movieOpt.get();
+
+        return new ResponseEntity<>(movie.getRating(), HttpStatus.OK);
+    }
+
 }

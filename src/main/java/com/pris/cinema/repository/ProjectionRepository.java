@@ -28,4 +28,8 @@ public interface ProjectionRepository extends CrudRepository<Projection, Long> {
             @Param("dateTime1") LocalDateTime dateTime1);
 
     List<Projection> findAllByMovieTitle(String title);
+
+    @Query("FROM Projection AS p WHERE :dateTime0 < p.dateTime AND p.dateTime < :dateTime1")
+    List<Projection> findAllByMonthAndRating(@Param("dateTime0")LocalDateTime dateTime0, @Param("dateTime1") LocalDateTime dateTime1);
+
 }

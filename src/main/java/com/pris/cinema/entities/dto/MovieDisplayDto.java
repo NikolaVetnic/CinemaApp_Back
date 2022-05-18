@@ -26,6 +26,7 @@ public class MovieDisplayDto {
     protected Set<Genre> genres;
     protected List<ProjectionDisplayDto> projections;
     protected List<CommentDisplayDto> comments;
+    protected Double avarageRating;
 
     public MovieDisplayDto(Movie movie) {
         this.id = movie.getId();
@@ -37,5 +38,6 @@ public class MovieDisplayDto {
         this.projections = new ArrayList<>();
         this.comments = movie.getComments().stream()
                 .map(c -> c.getDisplayDto()).collect(Collectors.toList());
+        this.avarageRating = movie.getRating();
     }
 }
