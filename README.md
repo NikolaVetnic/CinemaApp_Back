@@ -1,7 +1,3 @@
 # PRIS_CinemaBack
 
-## Work Log
-
-`20210331` : `User` entity created. Spring Security implemented.
-
-`20220401` : `SecurityUtils` component for checking roles of user logged into the system.
+A backend Spring Boot app developed as the final project of Process of Information System Development course at Faculty of Sciences in Novi Sad.
