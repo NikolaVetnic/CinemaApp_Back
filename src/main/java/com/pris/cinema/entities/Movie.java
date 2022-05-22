@@ -74,8 +74,8 @@ public class Movie implements Comparable<Movie> {
     protected List<Comment> comments = new LinkedList<>();
 
     public void addRating(Integer rating) {
-        this.ratingSum += rating;
-        this.ratingCount++;
+        this.ratingSum = this.ratingSum == null ? rating : this.ratingSum + rating;
+        this.ratingCount = this.ratingCount == null ? 1 : this.ratingCount + 1;
     }
 
     public double getRating(){
