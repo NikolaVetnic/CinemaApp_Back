@@ -81,7 +81,7 @@ public class Movie implements Comparable<Movie> {
     public double getRating(){
 
         if (ratingCount != null)
-            return 1.0 * ratingSum / ratingCount;
+            return ((int) (100.0 * ratingSum / ratingCount)) / 100.0;
 
         return 0.0;
     }
