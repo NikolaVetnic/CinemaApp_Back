@@ -137,40 +137,18 @@ public class MovieService {
         return new ResponseEntity<>("Projection with ID " + id + " deleted.", HttpStatus.OK);
     }
 
-    public ResponseEntity<?> addRating(@PathVariable Long id,@Valid @RequestBody RatingRegisterDto ratingDto){
 
-        Optional<Movie> movieOpt = movieRepository.findById(id);
+    public ResponseEntity<?> rateProjection(Long projectionId, Integer rating) {
 
-        if (!movieOpt.isPresent())
-            return new ResponseEntity<>("{\"msg\":\"Movie not found.\"}", HttpStatus.BAD_REQUEST);
+        Optional<Projection> projectionOpt = projectionRepository.findById(projectionId);
 
-        Movie movie = movieOpt.get();
+        if (!projectionOpt.isPresent())
+            return new ResponseEntity<>("{\"msg\":\"Projection not found.\"}", HttpStatus.BAD_REQUEST);
 
-        Integer ratingSum = movie.getRatingSum();
-        Double ratingCount = movie.getRatingCount();
-
-        ratingSum = ratingSum + ratingDto.getRating();
-        ratingCount++;
-
-        movie.setRatingSum(ratingSum);
-        movie.setRatingCount(ratingCount);
-
+        Movie movie = projectionOpt.get().getMovie();
+        movie.addRating(rating);
         Movie persistedMovie = movieRepository.save(movie);
 
         return new ResponseEntity<>(persistedMovie, HttpStatus.OK);
-
     }
-
-    public ResponseEntity<?> getRating(@PathVariable Long id){
-
-        Optional<Movie> movieOpt = movieRepository.findById(id);
-
-        if (!movieOpt.isPresent())
-            return new ResponseEntity<>("{\"msg\":\"Movie not found.\"}", HttpStatus.BAD_REQUEST);
-
-        Movie movie = movieOpt.get();
-
-        return new ResponseEntity<>(movie.getRating(), HttpStatus.OK);
-    }
-
 }

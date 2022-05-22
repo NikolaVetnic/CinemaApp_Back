@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "e58c1d5b-d77d-4c4e-a4a1-7677619a9d33",
 		"name": "PRIS",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15705090"
 	},
 	"item": [
 		{
@@ -440,7 +441,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk1NTUwNywiaWF0IjoxNjUyODY5MTA3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.0rW2ZvCJv2gI775Y7GoIhu2zKexf2OnwWB5mSN_FoD-n2NZVNZVjVlM2I_6hghEYCdSoLLpbLVMKOlwpcdR6mg",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MzI5OTY3MiwiaWF0IjoxNjUzMjEzMjcyLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.LP178-rKoiNDZpfjIjnXkvF-VReyrxIXGbiElImASDG7n2ZOJdJ3iu7qmE4lQtGoXgzFufS4pzM_pBzv5Sd1VQ",
 								"type": "text"
 							}
 						],
@@ -684,6 +685,40 @@
 								"movies",
 								"projections",
 								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECTION Rate projection's movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MzI5OTY3MiwiaWF0IjoxNjUzMjEzMjcyLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.LP178-rKoiNDZpfjIjnXkvF-VReyrxIXGbiElImASDG7n2ZOJdJ3iu7qmE4lQtGoXgzFufS4pzM_pBzv5Sd1VQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/movies/projections/rate/1?rating=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movies",
+								"projections",
+								"rate",
+								"1"
+							],
+							"query": [
+								{
+									"key": "rating",
+									"value": "1"
+								}
 							]
 						}
 					},

@@ -73,6 +73,11 @@ public class Movie implements Comparable<Movie> {
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
     protected List<Comment> comments = new LinkedList<>();
 
+    public void addRating(Integer rating) {
+        this.ratingSum += rating;
+        this.ratingCount++;
+    }
+
     public double getRating(){
 
         if (ratingCount != null)

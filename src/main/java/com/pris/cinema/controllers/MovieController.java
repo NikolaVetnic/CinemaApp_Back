@@ -93,9 +93,10 @@ public class MovieController {
     }
 
 
-    @GetMapping("{id}/rate")
-    public ResponseEntity<?> rateMovie(@PathVariable Long id, @Valid @RequestBody RatingRegisterDto ratingDto, BindingResult result) {
-        return new ResponseEntity<>(movieService.addRating(id, ratingDto) , HttpStatus.OK);
+    @PostMapping("/projections/rate/{id}")
+    @ResponseBody
+    public ResponseEntity<?> rateProjection(@PathVariable Long id, @RequestParam Integer rating) {
+        return movieService.rateProjection(id, rating);
     }
 
 
