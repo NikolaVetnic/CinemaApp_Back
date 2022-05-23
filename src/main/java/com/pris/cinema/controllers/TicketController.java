@@ -56,8 +56,8 @@ public class TicketController {
         return ticketService.changeTicketStatusToPaidForProjectionAndUser(ticketPayDto, result);
     }
 
-    @GetMapping("/pay")
-    public ResponseEntity<?> getPriceForProjectionAndUser(
+    @PostMapping("/price")
+    public ResponseEntity<?> getPriceForProjectionAndUser2(
             @Valid @RequestBody TicketPayDto ticketPayDto, BindingResult result) {
         return ticketService.getPriceForProjectionAndUser(ticketPayDto, result);
     }
