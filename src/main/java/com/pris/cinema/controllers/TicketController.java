@@ -62,7 +62,7 @@ public class TicketController {
         return ticketService.getPriceForProjectionAndUser(ticketPayDto, result);
     }
 
-    @GetMapping("/profit")
+    @PostMapping("/profit")
     public ResponseEntity<?> getProfitForPeriod(
             @Valid @RequestBody PeriodDto periodDto, BindingResult result) {
         return new ResponseEntity<>(ticketService.getProfitForPeriod(periodDto), HttpStatus.OK);
