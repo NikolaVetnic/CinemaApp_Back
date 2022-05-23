@@ -11,9 +11,10 @@ INSERT INTO `pris_cinema`.`genre` (`id`, `genre`) VALUES ('4', 'DRAMA');
 INSERT INTO `pris_cinema`.`genre` (`id`, `genre`) VALUES ('5', 'THRILLER');
 
 SELECT * FROM section;
-INSERT INTO `pris_cinema`.`section` (`id`, `section`) VALUES ('1', 'GROUND_FLOOR');
-INSERT INTO `pris_cinema`.`section` (`id`, `section`) VALUES ('2', 'GALLERY_LEFT');
-INSERT INTO `pris_cinema`.`section` (`id`, `section`) VALUES ('3', 'GALLERY_RIGHT');
+INSERT INTO `pris_cinema`.`section` (`id`, `modifier`, `section`) VALUES ('1', '1.0', 'GROUND_FLOOR');
+INSERT INTO `pris_cinema`.`section` (`id`, `modifier`, `section`) VALUES ('2', '1.25', 'GALLERY_LEFT');
+INSERT INTO `pris_cinema`.`section` (`id`, `modifier`, `section`) VALUES ('3', '1.35', 'GALLERY_RIGHT');
+INSERT INTO `pris_cinema`.`section` (`id`, `modifier`, `section`) VALUES ('4', '1.5', 'WIP');
 
 SELECT * FROM movie;
 INSERT INTO `pris_cinema`.`movie` (`id`, `title`, `description`, `image`, `trailer`, `runtime`) VALUES

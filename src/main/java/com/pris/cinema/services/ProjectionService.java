@@ -71,14 +71,17 @@ public class ProjectionService {
 
     public List<Projection> getBestRatedProjections() {
 
+        LocalDateTime now = LocalDateTime.now();
+
         return projectionRepository
                 .findAllByMonthAndRating(
-                        LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth().getValue(), 1,
-                                LocalDateTime.now().getHour(), LocalDateTime.now().getMinute()),
-                        LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth().getValue(),
-                                LocalDateTime.now().getMonth().maxLength(), LocalDateTime.now().getHour(),
-                                LocalDateTime.now().getMinute()))
-                .stream().filter(p -> p.getMovie().getRating() > 4).collect(Collectors.toList());
+                        now.withDayOfMonth(1),
+                        now.withDayOfMonth(now.getMonth().maxLength()))
+                .stream().filter(p -> p.getMovie().getRating() > 4)
+                .sorted((p0, p1) -> {
+                    double d0 = p0.getMovie().getDisplayDto().getAvarageRating();
+                    double d1 = p1.getMovie().getDisplayDto().getAvarageRating();
+                    return d0 < d1 ? 1 : d0 == d1 ? 0 : -1;
+                }).collect(Collectors.toList());
     }
-
 }
