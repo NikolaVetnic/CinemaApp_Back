@@ -951,15 +951,12 @@
 				},
 				{
 					"name": "TICKET Price for tickets by User for Projection",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1Mjk1NTUwNywiaWF0IjoxNjUyODY5MTA3LCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.0rW2ZvCJv2gI775Y7GoIhu2zKexf2OnwWB5mSN_FoD-n2NZVNZVjVlM2I_6hghEYCdSoLLpbLVMKOlwpcdR6mg",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmaXJzdE5hbWUiOiJOaWtvbGEiLCJsYXN0TmFtZSI6IlZldG5pYyIsImlkIjoiMSIsImV4cCI6MTY1MzQxODU5MCwiaWF0IjoxNjUzMzMyMTkwLCJ1c2VybmFtZSI6ImFkbWluQG5pa29sYXBhY2VrdmV0bmljLnJzIn0.2b_dXVW2Z5kawZMKVmGed2GUbCoMCRD2_F02-dlInOklS5idwIFSlgVVX5N3npcoTpl9yqN8GF5AVFKcBx9Jtw",
 								"type": "text"
 							}
 						],
@@ -973,7 +970,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/tickets/pay",
+							"raw": "http://localhost:8080/api/tickets/price",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -982,7 +979,7 @@
 							"path": [
 								"api",
 								"tickets",
-								"pay"
+								"price"
 							]
 						}
 					},
@@ -1088,6 +1085,14 @@
 								"1"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

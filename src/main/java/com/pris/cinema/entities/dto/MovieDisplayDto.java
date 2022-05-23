@@ -21,6 +21,7 @@ public class MovieDisplayDto {
     protected Long id;
     protected String title;
     protected String image;
+    protected String trailer;
     protected String description;
     protected Integer runtime;
     protected Set<Genre> genres;
@@ -32,6 +33,7 @@ public class MovieDisplayDto {
         this.id = movie.getId();
         this.title = movie.getTitle();
         this.image = movie.getImage();
+        this.trailer = movie.getTrailer();
         this.description = movie.getDescription();
         this.runtime = movie.getRuntime();
         this.genres = movie.getGenres();
