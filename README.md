@@ -1,3 +1,3 @@
-# PRIS_CinemaBack
+# CinemaApp Back
 
-A backend Spring Boot app developed as the final project of Process of Information System Development course at Faculty of Sciences in Novi Sad.
+A CinemaApp Spring Boot backend.
